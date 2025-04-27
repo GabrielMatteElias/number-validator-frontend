@@ -10,6 +10,7 @@ import Dashboard from '../pages/dashboard/Dashboard';
 import Login from '../pages/login/Login';
 import ProtectedRoute from './PrivateRoutes';
 import Register from '../pages/login/register/Register';
+import Profile from '../pages/profile/Profile.jsx';
 
 const AppRoutes = () => {
     return (
@@ -23,6 +24,7 @@ const AppRoutes = () => {
                     {/* Rotas internas */}
                     <Route index element={<Validator />} />
                     <Route path='/dashboard' element={<Dashboard />} />
+                    <Route path='/perfil' element={<Profile />} />
                 </Route>
 
                 {/* Rotas inválidas */}

@@ -4,6 +4,7 @@ const theme = createTheme({
     palette: {
         primary: {
             main: '#1976D2',
+            hover: '#64B5F6'
         },
         secondary: {
             main: '#E3E8EF',
@@ -42,10 +43,20 @@ const theme = createTheme({
         body2: {
             fontSize: '1.4rem',
         },
+        caption:{
+            fontSize: '1rem',
+        },
         link: {
             '&:hover': {
                 color: '#E3E8EF'
             },
+        },
+    },
+    snackbar: {
+        autoHideDuration: 6 * 1000,
+        anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'right',
         },
     },
     components: {
@@ -141,12 +152,12 @@ const theme = createTheme({
                 },
             },
         },
-    },
-    snackbar: {
-        autoHideDuration: 6 * 1000,
-        anchorOrigin: {
-            vertical: 'top',
-            horizontal: 'right',
+        MuiTooltip: {
+            styleOverrides: {
+                tooltip: {
+                    fontSize: '1.1rem', // Alterando o tamanho da fonte
+                },
+            },
         },
     },
 });

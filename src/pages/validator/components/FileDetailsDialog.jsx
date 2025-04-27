@@ -29,9 +29,9 @@ const FileDetailsDialog = ({ open, onClose, data }) => {
                                         <TableCell>{formatPhoneNumber(row.numero)}</TableCell>
                                         <TableCell align='right'>
                                             {row.status ?
-                                                <CheckCircleIcon sx={{ color: '#064e3b' }} titleAccess='Whatsapp válido' />
+                                                <CheckCircleIcon sx={{ color: '#fff' }} titleAccess='Whatsapp válido' />
                                                 :
-                                                <CancelIcon sx={{ color: '#9b1c1c' }} titleAccess='Whatsapp inválido' />
+                                                <CancelIcon sx={{ color: '#fff' }} titleAccess='Whatsapp inválido' />
                                             }
                                         </TableCell>
                                     </TableRow>
