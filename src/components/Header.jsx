@@ -1,6 +1,7 @@
 import { AppBar, Toolbar, Avatar, Box, Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
+import logo from '../assets/validate.png'
 
 const Header = () => {
     return (
@@ -8,7 +9,7 @@ const Header = () => {
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 {/* Logo à esquerda */}
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <h1>VALIDADOR</h1>
+                    <img src={logo} alt="Logo da Empresa" width={150} />
                 </Box>
 
                 {/* Opções no centro */}
