@@ -9,25 +9,27 @@ const Header = () => {
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 {/* Logo à esquerda */}
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <img src={logo} alt="Logo da Empresa" width={150} />
+                    <Link to="/">
+                        <img src={logo} alt="Logo da Empresa" width={150} />
+                    </Link>
                 </Box>
 
                 {/* Opções no centro */}
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 5 }}>
                     <Link to="/">
-                        <Typography variant='te'>
+                        <Typography variant='link'>
                             Validador
                         </Typography>
                     </Link>
                     <Link to="/dashboard">
-                        <Typography variant='te'>
+                        <Typography variant='link'>
                             Dashboard
                         </Typography>
                     </Link>
                 </Box>
                 {/* Avatar do usuário à direita */}
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Avatar alt="Usuário" sx={{cursor: 'pointer'}}>
+                    <Avatar alt="Usuário" sx={{ cursor: 'pointer' }}>
                         <PersonIcon sx={{ fontSize: '2.5rem' }} />
                     </Avatar>
                 </Box>

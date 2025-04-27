@@ -42,7 +42,7 @@ const theme = createTheme({
         body2: {
             fontSize: '1.4rem',
         },
-        te: {
+        link: {
             '&:hover': {
                 color: '#E3E8EF'
             },

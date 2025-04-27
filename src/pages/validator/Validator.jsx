@@ -238,7 +238,6 @@ const ReportSection = () => {
                 <Table sx={{ minWidth: 650 }} aria-label="relatório de arquivos enviados">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Usuário</TableCell>
                             <TableCell align='center'>Data Solicitação</TableCell>
                             <TableCell>Arquivo</TableCell>
                             <TableCell>Total Linhas</TableCell>
@@ -257,7 +256,6 @@ const ReportSection = () => {
                         ) : (
                             reports.map((report) => (
                                 <TableRow key={report.id}>
-                                    <TableCell>{report.usuario}</TableCell>
                                     <TableCell align='center'>{formatDate(report.dataSolicitacao)}</TableCell>
                                     <TableCell>{report.arquivo}</TableCell>
                                     <TableCell align='right'>{report.totalLinhas}</TableCell>
