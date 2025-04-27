@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.fixed-button {
+    width: 20rem; 
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,21 @@
+.layoutContainer {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #F9FAFB;
+    /* Fundo geral do dashboard */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mainContent {
+    flex: 1;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.footer {
+    background-color: #c4c8ce;
+    /* Cinza claro */
+    padding: 1rem 0;
+    margin-top: auto;
+}
