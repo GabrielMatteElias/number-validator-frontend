@@ -1,13 +1,10 @@
+// src/components/PrivateRoute.js
+import { useAuth } from '../context/AuthContext';
 import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ children }) => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+export default function PrivateRoute({ children }) {
+    const { user, loading } = useAuth();
 
-    if (!isLoggedIn) {
-        return <Navigate to="/login" replace />;
-    }
-
-    return children;
-};
-
-export default ProtectedRoute;
+    if (loading) return <div>Carregando...</div>;
+    return true ? children : <Navigate to="/login" />;
+}

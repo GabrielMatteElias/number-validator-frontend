@@ -1,54 +1,144 @@
-import { Box, Button, TextField, Typography, Paper } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Box, Button, TextField, Typography, Paper, Alert, CircularProgress } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Register.module.css';
+import { useApi } from '../../../hooks/useApi';
+import { useState } from 'react';
 
 const Register = () => {
-    const handleSubmit = (e) => {
+    const [formData, setFormData] = useState({
+        name: '',
+        cpf: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    });
+    const [erro, setErro] = useState('');
+    const navigate = useNavigate();
+
+    const { registerUser, loading } = useApi();
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Aqui você vai tratar o cadastro (ex: enviar para uma API)
+        setErro('');
+
+        if (formData.password !== formData.confirmPassword) {
+            setErro('As senhas não coincidem!');
+            return;
+        }
+
+        if (!formData.name || !formData.cpf || !formData.email || !formData.password) {
+            setErro('Preencha todos os campos obrigatórios');
+            return;
+        }
+
+        const response = await registerUser({
+            cpf: formData.cpf,
+            nome: formData.name,
+            email: formData.email,
+            senha: formData.password
+        });
+
+        if (response.status_code === 200) {
+            navigate('/login', { state: { registrationSuccess: true } });
+        } else {
+            setErro(response.status_message || 'Erro ao cadastrar usuário');
+        }
     };
 
     return (
         <Box className={styles.container}>
-            <Paper elevation={3} className={styles.paper}>
-                <Typography variant="h4" className={styles.title}>
+            <Paper className={styles.paper}>
+                <Typography variant="h4" className={styles.title} gutterBottom>
                     Cadastre-se
                 </Typography>
+
                 <Box component='form' onSubmit={handleSubmit} className={styles.form} noValidate>
                     <TextField
-                        label="Nome"
+                        name="name"
+                        label="Nome Completo"
                         variant="outlined"
                         fullWidth
                         required
-                        className={styles.input}
+                        value={formData.name}
+                        onChange={handleChange}
                     />
+
                     <TextField
+                        name="cpf"
+                        label="CPF"
+                        variant="outlined"
+                        fullWidth
+                        required
+                        value={formData.cpf}
+                        onChange={handleChange}
+                    />
+
+                    <TextField
+                        name="email"
                         label="Email"
                         type="email"
                         variant="outlined"
                         fullWidth
                         required
-                        className={styles.input}
+                        value={formData.email}
+                        onChange={handleChange}
                     />
+
                     <TextField
+                        name="password"
                         label="Senha"
                         type="password"
                         variant="outlined"
                         fullWidth
                         required
-                        className={styles.input}
+                        value={formData.password}
+                        onChange={handleChange}
                     />
+
+                    <TextField
+                        name="confirmPassword"
+                        label="Confirmar Senha"
+                        type="password"
+                        variant="outlined"
+                        fullWidth
+                        required
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
+                        error={formData.confirmPassword && formData.password !== formData.confirmPassword}
+                        helperText={formData.confirmPassword && formData.password !== formData.confirmPassword ? 'As senhas não coincidem!' : ''}
+                    />
+
+                    {erro && (
+                        <Alert severity="error">
+                            {erro}
+                        </Alert>
+                    )}
+
                     <Button
                         variant="contained"
                         color="primary"
                         type="submit"
                         fullWidth
-                        className={styles.button}
+                        disabled={loading}
                     >
-                        Registrar
+                        {loading ? <CircularProgress size={24} /> : 'Registrar'}
                     </Button>
-                    <Typography variant="body2" className={styles.link}>
-                        Já tem uma conta? <Link to="/login">Entrar</Link>
+
+                    <Typography variant="body2" textAlign="center">
+                        Já tem uma conta?{' '}
+                        <Link to="/login" style={{ textDecoration: 'none' }}>
+                            <Typography component="span" color="primary">
+                                Entrar
+                            </Typography>
+                        </Link>
                     </Typography>
                 </Box>
             </Paper>

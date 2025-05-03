@@ -4,7 +4,9 @@ const theme = createTheme({
     palette: {
         primary: {
             main: '#1976D2',
-            hover: '#64B5F6'
+            dark: '#1565C0', 
+            light: '#42A5F5', 
+            hover: '#64B5F6',
         },
         secondary: {
             main: '#E3E8EF',
@@ -43,7 +45,7 @@ const theme = createTheme({
         body2: {
             fontSize: '1.4rem',
         },
-        caption:{
+        caption: {
             fontSize: '1rem',
         },
         link: {

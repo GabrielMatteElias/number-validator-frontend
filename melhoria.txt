@@ -1,0 +1,28 @@
+# Checklist de Implementação
+
+## 📊 Relatórios
+- [ ] Botão para disparar fila
+
+- [ ] Input para validador unitário
+
+- [ ] Adicionar à tabela:
+  - [ ] Campo observação
+  - [ ] Campo download de arquivo
+  - [ ] Ajustes para validação unitária
+
+- [ ] Modal de detalhes com :
+  - [ ] Novas abas:
+    - [ ] CPF Válido
+    - [ ] CPF Inválido
+
+  - [ ] Status:
+    - [ ] Válido
+    - [ ] Inválido
+    - [ ] Informação especial
+
+## 👤 Perfil
+- [ ] Alterar texto "Seu plano atual" → "Números disponíveis"
+
+## 🖥️ Footer
+- [ ] Estilização
+- [ ] Incluir email da empresa

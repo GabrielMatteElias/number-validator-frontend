@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from '../context/AuthContext.jsx';
 
 //Páginas
 import Validator from '../pages/validator/Validator';
@@ -10,26 +11,28 @@ import Dashboard from '../pages/dashboard/Dashboard';
 import Login from '../pages/login/Login';
 import ProtectedRoute from './PrivateRoutes';
 import Register from '../pages/login/register/Register';
-import Profile from '../pages/profile/Profile.jsx';
+import Profile from '../pages/profile/Profile';
 
 const AppRoutes = () => {
     return (
         <Router>
-            <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
+            <AuthProvider>
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
 
-                {/* Layout geral */}
-                <Route path="/" element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
-                    {/* Rotas internas */}
-                    <Route index element={<Validator />} />
-                    <Route path='/dashboard' element={<Dashboard />} />
-                    <Route path='/perfil' element={<Profile />} />
-                </Route>
+                    {/* Layout geral */}
+                    <Route path="/" element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
+                        {/* Rotas internas */}
+                        <Route index element={<Validator />} />
+                        <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                        <Route path='/perfil' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+                    </Route>
 
-                {/* Rotas inválidas */}
-                {/* <Route path="*" element={<NotFound />} /> */}
-            </Routes>
+                    {/* Rotas inválidas */}
+                    {/* <Route path="*" element={<NotFound />} /> */}
+                </Routes>
+            </AuthProvider>
         </Router>
     );
 };

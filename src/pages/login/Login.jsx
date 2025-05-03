@@ -1,40 +1,61 @@
-import { useState } from 'react';
-import { TextField, Button, Typography, Box } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { TextField, Button, Typography, Box, Alert } from '@mui/material';
 import styles from './Login.module.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { useApi } from '../../hooks/useApi';
 
 const Login = () => {
     const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+    const [password, setPassword] = useState('');
     const [erro, setErro] = useState('');
-    const [loading, setLoading] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
+
+    const { login, loading, error } = useApi();
+
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.state?.registrationSuccess) {
+            setShowSuccess(true);
+
+            // Remove a mensagem após 5 segundos
+            const timer = setTimeout(() => {
+                setShowSuccess(false);
+                navigate('.', { replace: true, state: {} });
+            }, 5000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [location.state, navigate]);
+
+    const handleLogin = async (e) => {
         e.preventDefault();
         setErro('');
 
-        if (!email || !senha) {
+        if (!email || !password) {
             setErro('Preencha todos os campos.');
             return;
         }
 
-        setLoading(true);
-
-        // Simula uma requisição
-        setTimeout(() => {
-            setLoading(false);
-            localStorage.setItem('isLoggedIn', 'true');
-            navigate('/')
-        }, 1500);
+        const response = await login(email, password);
+        console.log(response);
     };
 
     return (
         <Box className={styles.container}>
             <Box className={styles.formContainer}>
-                <Typography variant="h4" color='success' className={styles.title}>
+                <Typography variant="h4" color='success' className={styles.title} gutterBottom>
                     Valida<Typography variant='span' color='primary'>Whats</Typography>
                 </Typography>
+
+                {showSuccess && (
+                    <Alert severity="success" sx={{ mb: 3 }}>
+                        Cadastro realizado com sucesso!
+                    </Alert>
+                )}
                 <Box component='form' className={styles.form} onSubmit={handleLogin} noValidate>
                     <TextField
                         label="Email"
@@ -48,8 +69,8 @@ const Login = () => {
                         type="password"
                         variant="outlined"
                         fullWidth
-                        value={senha}
-                        onChange={(e) => setSenha(e.target.value)}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
 
                     {erro && (

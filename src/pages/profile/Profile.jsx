@@ -4,6 +4,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import profilePicture from '../../assets/profile-picture.png'
 
 const Profile = () => {
+
     const usuario = {
         nome: 'João da Silva',
         email: 'joao@email.com',
@@ -21,20 +22,13 @@ const Profile = () => {
 
     return (
         <Box className={styles.container}>
-            {/* Dados do usuário */}
-            <Card className={styles.cardUsuario}>
-                <CardContent sx={{ textAlign: 'center' }}>
-                    <Avatar sx={{ width: 80, height: 80, margin: '0 auto', mb: 2 }} src={profilePicture}>
-                        <PersonIcon sx={{ fontSize: '3rem' }} />
-                    </Avatar>
-                    <Typography variant="h6">{usuario.nome}</Typography>
-                    <Typography variant="body2" color="text.secondary">{usuario.email}</Typography>
-                </CardContent>
-            </Card>
-
             {/* Plano Atual */}
             <Card className={styles.cardPlano}>
                 <CardContent>
+                    <Box display='flex' alignItems='center' gap={1}>
+                        <Typography variant="h6">{usuario.nome}</Typography>
+                        <Typography variant="body2" color="text.secondary">{usuario.email}</Typography>
+                    </Box>
                     <Typography variant="h6" gutterBottom>Seu Plano Atual</Typography>
                     <Typography variant="body1">
                         {`${usuario.planoAtual.quantidade} números`}

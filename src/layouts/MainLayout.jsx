@@ -2,6 +2,7 @@ import { AppBar, Toolbar, Typography, Container, Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import Header from '../components/Header'
 import styles from './MainLayout.module.css';
+import Footer from '../components/Footer';
 
 const MainLayout = () => {
     return (
@@ -15,11 +16,7 @@ const MainLayout = () => {
             </Container>
 
             {/* Footer */}
-            <Box component="footer" className={styles.footer}>
-                <Typography variant="body2" color="textSecondary" align="center">
-                    © 2025 - Todos os direitos reservados
-                </Typography>
-            </Box>
+            <Footer />
         </Box>
     );
 };

@@ -4,28 +4,22 @@ import { useState } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import logo from '../assets/validate.png';
 import profilePicture from '../assets/profile-picture.png'
+import { useAuth } from '../context/AuthContext';
 
 const Header = () => {
     const [anchorEl, setAnchorEl] = useState(null);
+
+    const { user, logout } = useAuth();
+
+    const userInitial = user?.name?.charAt(0)?.toUpperCase() || 'G';
+
     const navigate = useNavigate();
 
-    const handleAvatarClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const handleAvatarClick = (event) => { setAnchorEl(event.currentTarget); };
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        handleClose();
-        navigate('/login');
-    };
+    const handleClose = () => { setAnchorEl(null); };
 
     const open = Boolean(anchorEl);
-
     return (
         <>
             <AppBar position="fixed" color="primary" elevation={1}>
@@ -49,14 +43,8 @@ const Header = () => {
 
                     {/* Avatar à direita */}
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        
-                        <Avatar
-                            alt="Usuário"
-                            sx={{ cursor: 'pointer' }}
-                            onClick={handleAvatarClick}
-                            src={profilePicture}
-                        >
-                            <PersonIcon sx={{ fontSize: '3rem' }} />
+                        <Avatar sx={{ cursor: 'pointer' }} onClick={handleAvatarClick}>
+                            {userInitial}
                         </Avatar>
                     </Box>
                 </Toolbar>
@@ -88,8 +76,10 @@ const Header = () => {
                             justifyContent: 'flex-start',
                             textTransform: 'none',
                             transition: 'all 0.3s',
+                            color: '#000',
+                            fontWeight: 400,
                             '&:hover': {
-                                color: 'primary.hover',
+                                color: 'text.secondary',
                             },
                         }}
                     >
@@ -97,13 +87,15 @@ const Header = () => {
                     </Button>
 
                     <Button
-                        onClick={handleLogout}
+                        onClick={logout}
                         sx={{
                             justifyContent: 'flex-start',
                             textTransform: 'none',
                             transition: 'color 0.3s',
+                            color: '#000',
+                            fontWeight: 400,
                             '&:hover': {
-                                color: 'primary.hover',
+                                color: 'text.secondary',
                             },
                         }}
                     >
