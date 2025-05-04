@@ -21,9 +21,62 @@
     gap: 2rem;
 }
 
-.cardUsuario,
-.cardPlano {
-    padding: 1rem;
+.card {
+    min-width: 275px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 24px;
+}
+
+.userName {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.userEmail {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.sectionTitle {
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.numbersContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.numbersAvailable {
+    font-weight: 700;
+    display: inline;
+    color: var(--text-primary);
+}
+
+.numbersTotal {
+    color: var(--text-secondary);
+    display: inline;
+    margin-left: 4px;
+}
+
+.usageChip {
+    font-size: 1rem !important;
+}
+
+.progressBar {
+    height: 8px;
+    border-radius: 4px;
+    margin-top: 8px;
 }
 
 .pacotesContainer {
@@ -32,7 +85,7 @@
     gap: 2rem;
 }
 
-.statusPlano{
+.statusPlano {
     display: flex;
 }
 

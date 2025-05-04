@@ -1,27 +1,27 @@
-import { Box, Container, Typography, Link, Divider } from '@mui/material';
-import { Email, Facebook, Instagram, LinkedIn, Twitter } from '@mui/icons-material';
-import logo from '../assets/validate.png'; // Reutilizando o mesmo logo do header
+import { Box, Container, Typography, Link, Divider, Stack } from '@mui/material';
+import { Email } from '@mui/icons-material';
+import logo from '../assets/validate.png';
 
 const Footer = () => {
     return (
         <Box
             component="footer"
             sx={{
-                backgroundColor: 'primary.dark',
-                color: 'white',
+                bgcolor: 'primary.main',
+                color: 'common.white',
                 py: 4,
                 mt: 'auto'
             }}
         >
             <Container maxWidth="lg">
-                <Box sx={{
-                    display: 'flex',
-                    flexDirection: { xs: 'column', md: 'row' },
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    gap: 3
-                }}>
-                    {/* Logo e descrição */}
+                <Stack
+                    direction={{ xs: 'column', md: 'row' }}
+                    justifyContent="space-between"
+                    alignItems={{xs: 'start-flex', md: 'row'}}
+                    spacing={4}
+                    sx={{ mb: 3 }}
+                    paddingLeft={{ xs: '10rem', md: '0' }}                    
+                >
                     <Box sx={{ maxWidth: 300 }}>
                         <img src={logo} alt="ValidaWhats" width={150} />
                         <Typography variant="body2" sx={{ mt: 2 }}>
@@ -29,42 +29,43 @@ const Footer = () => {
                         </Typography>
                     </Box>
 
-                    {/* Links rápidos */}
-                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <Box>
                         <Typography variant="h6" gutterBottom>
                             Links Rápidos
                         </Typography>
-                        <Link href="/" color="inherit" underline="hover" sx={{ mb: 1 }}>
-                            Validador
-                        </Link>
-                        <Link href="/dashboard" color="inherit" underline="hover" sx={{ mb: 1 }}>
-                            Dashboard
-                        </Link>
-                        <Link href="/perfil" color="inherit" underline="hover">
-                            Meu Perfil
-                        </Link>
+                        <Stack
+                            direction={{ xs: 'row', sm: 'column' }}
+                            spacing={{ xs: 2, sm: 1 }}
+                            flexWrap="wrap"
+                        >
+                            <Link href="/" color="inherit" underline="hover">
+                                Validador
+                            </Link>
+                            <Link href="/dashboard" color="inherit" underline="hover">
+                                Dashboard
+                            </Link>
+                            <Link href="/perfil" color="inherit" underline="hover">
+                                Perfil
+                            </Link>
+                        </Stack>
                     </Box>
 
-                    {/* Contato */}
                     <Box>
                         <Typography variant="h6" gutterBottom>
                             Contato
                         </Typography>
-                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                            <Email sx={{ mr: 1 }} />
-                            <Typography>contato@validawhats.com</Typography>
-                        </Box>
+                        <Stack direction="row" alignItems="center" spacing={1}>
+                            <Email fontSize="small" />
+                            <Typography variant="body2">contato@validawhats.com</Typography>
+                        </Stack>
                     </Box>
-                </Box>
+                </Stack>
 
-                <Divider sx={{ my: 3, backgroundColor: 'rgba(255,255,255,0.2)' }} />
+                <Divider sx={{ borderColor: 'rgba(255,255,255,0.2)', my: 3 }} />
 
-                {/* Rodapé inferior */}
-                <Box sx={{ textAlign: 'center' }}>
-                    <Typography variant="body2">
-                        © {new Date().getFullYear()} ValidaWhats. Todos os direitos reservados.
-                    </Typography>
-                </Box>
+                <Typography variant="body2" align="center">
+                    © {new Date().getFullYear()} ValidaWhats. Todos os direitos reservados.
+                </Typography>
             </Container>
         </Box>
     );

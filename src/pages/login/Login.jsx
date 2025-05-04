@@ -3,15 +3,13 @@ import { TextField, Button, Typography, Box, Alert } from '@mui/material';
 import styles from './Login.module.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { useApi } from '../../hooks/useApi';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [erro, setErro] = useState('');
     const [showSuccess, setShowSuccess] = useState(false);
 
-    const { login, loading, error } = useApi();
+    const { login, loading, error } = useAuth();
 
     const navigate = useNavigate();
 
@@ -33,15 +31,13 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setErro('');
 
         if (!email || !password) {
             setErro('Preencha todos os campos.');
             return;
         }
 
-        const response = await login(email, password);
-        console.log(response);
+        await login(email, password);
     };
 
     return (
@@ -73,10 +69,10 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
 
-                    {erro && (
-                        <Typography color="error" variant="body2">
-                            {erro}
-                        </Typography>
+                    {error && (
+                        <Alert severity="error">
+                            {error}
+                        </Alert>
                     )}
 
                     <Button

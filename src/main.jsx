@@ -10,5 +10,5 @@ createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={theme}>
       <AppRoutes />
     </ThemeProvider>
-  </StrictMode>,
+  </StrictMode>
 )

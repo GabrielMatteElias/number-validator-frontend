@@ -1,102 +1,24 @@
-.footer {
-    padding: 2rem 0;
-    margin-top: auto;
-}
-
-.footerContent {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-@media (min-width: 900px) {
+/* Media queries para telas maiores */
+@media (min-width: 768px) {
     .footerContent {
         flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .linksSection {
+        flex-direction: column;
     }
 }
 
-.logoSection {
-    max-width: 300px;
-}
-
-.tagline {
-    margin-top: 0.5rem;
-}
-
-.quickLinks {
-    display: flex;
-    flex-direction: column;
-}
-
-.sectionTitle {
-    margin-bottom: 1rem;
-}
-
-.link {
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.contactSection {
-    text-align: center;
-}
-
-.emailContainer {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.emailIcon {
-    margin-right: 0.5rem;
-}
-
-.socialIcons {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-    justify-content: center;
-}
-
-.divider {
-    margin: 6.5rem 0;
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.bottomFooter {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-}
-
-@media (min-width: 600px) {
-    .bottomFooter {
-        flex-direction: row;
+/* Media queries para telas menores - ajuste dos links */
+@media (max-width: 600px) {
+    .paddingLeft {
+        padding-left: 5rem;
     }
-}
 
-.copyright {
-    margin-bottom: 0.5rem;
-}
-
-@media (min-width: 600px) {
-    .copyright {
+    .linksSection a {
         margin-bottom: 0;
-    }
-}
-
-.legalLinks {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-@media (min-width: 600px) {
-    .legalLinks {
-        margin-top: 0;
+        margin-right: 1rem;
     }
 }

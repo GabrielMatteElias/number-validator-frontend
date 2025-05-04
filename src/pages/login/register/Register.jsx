@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography, Paper, Alert, CircularProgress } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Register.module.css';
-import { useApi } from '../../../hooks/useApi';
+import { useApi } from '../../../services/useApi';
 import { useState } from 'react';
 
 const Register = () => {
@@ -24,6 +24,7 @@ const Register = () => {
             [name]: value
         }));
     };
+    console.log(formData);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,12 +40,7 @@ const Register = () => {
             return;
         }
 
-        const response = await registerUser({
-            cpf: formData.cpf,
-            nome: formData.name,
-            email: formData.email,
-            senha: formData.password
-        });
+        const response = await registerUser(formData.cpf, formData.name, formData.email, formData.password);
 
         if (response.status_code === 200) {
             navigate('/login', { state: { registrationSuccess: true } });

@@ -1,7 +1,5 @@
-import { Avatar, Box, Typography, Card, CardContent, LinearProgress, Button, Tooltip } from '@mui/material';
+import { Box, Typography, Card, CardContent, LinearProgress, Button, Tooltip, Chip } from '@mui/material';
 import styles from './Profile.module.css';
-import PersonIcon from '@mui/icons-material/Person';
-import profilePicture from '../../assets/profile-picture.png'
 
 const Profile = () => {
 
@@ -22,22 +20,44 @@ const Profile = () => {
 
     return (
         <Box className={styles.container}>
-            {/* Plano Atual */}
-            <Card className={styles.cardPlano}>
+            <Card className={styles.card}>
                 <CardContent>
-                    <Box display='flex' alignItems='center' gap={1}>
-                        <Typography variant="h6">{usuario.nome}</Typography>
-                        <Typography variant="body2" color="text.secondary">{usuario.email}</Typography>
+                    {/* User info section */}
+                    <Box className={styles.userInfo}>
+                        <Typography variant="h6" className={styles.userName}>{usuario.nome}</Typography>
+                        <Typography variant="body2" className={styles.userEmail}>{usuario.email}</Typography>
                     </Box>
-                    <Typography variant="h6" gutterBottom>Seu Plano Atual</Typography>
-                    <Typography variant="body1">
-                        {`${usuario.planoAtual.quantidade} números`}
+
+                    {/* Numbers available section */}
+                    <Typography variant="subtitle1" className={styles.sectionTitle}>
+                        Números disponíveis
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" mb={1}>
-                        {`${usuario.planoAtual.usados} utilizados`}
-                    </Typography>
-                    <Tooltip title={`${usuario.planoAtual.usados}`} arrow >
-                        <LinearProgress variant="determinate" value={progresso} />
+
+                    <Box className={styles.numbersContainer}>
+                        <Box>
+                            <Typography variant="h5" className={styles.numbersAvailable}>
+                                {`${usuario.planoAtual.quantidade - usuario.planoAtual.usados} `}
+                            </Typography>
+                            <Typography variant="body1" className={styles.numbersTotal}>
+                                de {usuario.planoAtual.quantidade}
+                            </Typography>
+                        </Box>
+                        <Chip
+                            label={`${Math.round(progresso)}% utilizado`}
+                            size="medium"
+                            className={styles.usageChip}
+                            color={progresso > 75 ? 'warning' : 'primary'}
+                        />
+                    </Box>
+
+                    {/* Progress bar */}
+                    <Tooltip title={`${usuario.planoAtual.usados} números utilizados`} arrow>
+                        <LinearProgress
+                            variant="determinate"
+                            value={progresso}
+                            className={styles.progressBar}
+                            color={progresso > 80 ? 'warning' : 'primary'}
+                        />
                     </Tooltip>
                 </CardContent>
             </Card>

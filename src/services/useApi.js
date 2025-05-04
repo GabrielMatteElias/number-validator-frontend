@@ -1,35 +1,30 @@
 // src/hooks/useApi.js
 import { useState, useCallback } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
-
-const API_BASE_URL = 'https://validawhats.onrender.com/v1';
 
 export function useApi() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const { logout } = useAuth();
 
-    // Função base para todas as requisições
+    const { user, logout } = useAuth();
+
     const makeRequest = useCallback(
         async (config) => {
             setLoading(true);
             setError(null);
 
             try {
-                const response = await axios({
+                const response = await api({
                     method: config.method,
-                    url: `${API_BASE_URL}${config.url}`,
+                    url: config.url,
                     data: config.data,
                     params: config.params,
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    },
+                    headers: config.headers, // opcional: permite sobrescrever headers
                 });
 
                 return response.data;
             } catch (err) {
-                // Tratamento de erro 401 (não autorizado)
                 if (err.response?.status === 401) {
                     logout();
                     setError('Sessão expirada. Por favor, faça login novamente.');
@@ -49,43 +44,23 @@ export function useApi() {
         [logout]
     );
 
-    // Auth Endpoints
-    const login = useCallback(
-        (email, password) =>
-            makeRequest({
-                method: 'post',
-                url: '/login',
-                data: { email, password },
-            }),
-        [makeRequest]
-    );
-
-    const checkTokenValidity = useCallback(
-        () =>
-            makeRequest({
-                method: 'post',
-                url: '/tempo-restante-token',
-            }),
-        [makeRequest]
-    );
-
     const registerUser = useCallback(
         (cpf, name, email, password) =>
             makeRequest({
                 method: 'put',
                 url: '/usuario/criar',
-                data: { cpf, name, email, password },
+                data: { cpf, nome: name, email, senha: password },
             }),
         [makeRequest]
     );
 
     // User Endpoints
     const getUserData = useCallback(
-        (userId) =>
+        () =>
             makeRequest({
                 method: 'post',
                 url: '/usuario/buscar',
-                data: { userId },
+                data: { id: user.id },
             }),
         [makeRequest]
     );
@@ -95,27 +70,28 @@ export function useApi() {
             makeRequest({
                 method: 'post',
                 url: '/usuario/dashboard',
+                data: { id: user.id },
             }),
         [makeRequest]
     );
 
     // Queue Endpoints
     const getReports = useCallback(
-        (userId) =>
+        () =>
             makeRequest({
                 method: 'post',
                 url: '/fila/carregar',
-                data: { reportId },
+                data: { id: user.id },
             }),
         [makeRequest]
     );
 
     const getReportsDetails = useCallback(
-        (reportId) =>
+        (queueId) =>
             makeRequest({
                 method: 'post',
                 url: '/fila/carregar-dados',
-                data: { reportId },
+                data: { id: queueId },
             }),
         [makeRequest]
     );
@@ -124,7 +100,8 @@ export function useApi() {
         (file) => {
             const formData = new FormData();
             formData.append('file', file);
-
+            formData.append('p_dados_request', JSON.stringify({ id: user.codigo_usuario }));
+            
             return makeRequest({
                 method: 'put',
                 url: '/fila/criar',
@@ -138,11 +115,11 @@ export function useApi() {
     );
 
     const triggerQueue = useCallback(
-        (userId) =>
+        () =>
             makeRequest({
                 method: 'post',
                 url: '/fila/disparar',
-                data: { userId },
+                data: { id: user.id },
             }),
         [makeRequest]
     );
@@ -151,10 +128,6 @@ export function useApi() {
         loading,
         error,
         clearError: () => setError(null),
-
-        // Auth methods
-        login,
-        checkTokenValidity,
 
         // User methods
         getUserData,
