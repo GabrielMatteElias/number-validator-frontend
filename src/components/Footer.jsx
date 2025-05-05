@@ -1,5 +1,4 @@
 import { Box, Container, Typography, Link, Divider, Stack } from '@mui/material';
-import logo from '../assets/validate.webp';
 
 const Footer = () => {
     return (
@@ -22,7 +21,7 @@ const Footer = () => {
                     paddingLeft={{ xs: '10rem', md: '0' }}                    
                 >
                     <Box sx={{ maxWidth: 300 }}>
-                        <img src={logo} alt="ValidaWhats" width={150} height='36rem' loading='lazy' />
+                                        <img src='/assets/validate.webp' alt="ValidaWhats - Validação de contatos de WhatsApp" width="150" height="36" loading="lazy"/>
                         <Typography variant="body2" sx={{ mt: 2 }}>
                             ValidaWhats - Solução completa para validação de números de WhatsApp
                         </Typography>
@@ -54,7 +53,7 @@ const Footer = () => {
                             Contato
                         </Typography>
                         <Stack direction="row" alignItems="center" spacing={1}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
                             <Typography variant="body2">contato@validawhats.com</Typography>
                         </Stack>
                     </Box>

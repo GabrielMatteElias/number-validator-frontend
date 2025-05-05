@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet';
-import logo from '../assets/validate.webp'
 
 export default function SEO({
     title = 'ValidaWhats - Validação de números de WhatsApp',
@@ -35,7 +34,7 @@ export default function SEO({
             <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
             <link rel="manifest" href="/site.webmanifest" />
 
-            <link rel="preload" href={logo} as="image" type="image/webp" />
+            <link rel="preload" href='/img/valida-whats.webp' as="image" type="image/webp" />
         </Helmet>
     );
 }

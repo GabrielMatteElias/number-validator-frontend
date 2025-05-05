@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from '../context/AuthContext.jsx';
+import { lazy, Suspense } from 'react';
 
 //Páginas
 import Validator from '../pages/validator/Validator';
@@ -7,11 +8,12 @@ import Validator from '../pages/validator/Validator';
 
 //Layout
 import MainLayout from '../layouts/MainLayout';
-import Dashboard from '../pages/dashboard/Dashboard';
+const Dashboard = lazy(() => import('../pages/dashboard/Dashboard'))
 import Login from '../pages/login/Login';
 import ProtectedRoute from './PrivateRoutes';
 import Register from '../pages/login/register/Register';
 import Profile from '../pages/profile/Profile';
+import Loading from '../components/Loading.jsx';
 
 const AppRoutes = () => {
     return (
@@ -25,7 +27,11 @@ const AppRoutes = () => {
                     <Route path="/" element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
                         {/* Rotas internas */}
                         <Route index element={<Validator />} />
-                        <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                        <Route path='/dashboard' element={<ProtectedRoute>
+                            <Suspense fallback={<Loading />}>
+                                <Dashboard />
+                            </Suspense>
+                        </ProtectedRoute>} />
                         <Route path='/perfil' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
                     </Route>
 

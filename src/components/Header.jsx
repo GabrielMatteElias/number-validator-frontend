@@ -15,7 +15,6 @@ import {
 } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import logo from '../assets/validate.webp';
 import { useAuth } from '../context/AuthContext';
 
 const Header = () => {
@@ -48,7 +47,9 @@ const Header = () => {
                         {/* Logo à esquerda */}
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             <Link to="/">
-                                <img src={logo} alt="Logo da Empresa" width={150} height='36rem' loading="lazy" />
+                                <picture>
+                                    <img src='/assets/validate.webp' alt="ValidaWhats - Validação de contatos de WhatsApp" width="150" height="36" loading="lazy" />
+                                </picture>
                             </Link>
                         </Box>
 
@@ -69,7 +70,7 @@ const Header = () => {
                                     aria-label="menu"
                                     onClick={handleMobileMenuClick}
                                 >
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></svg>                                </IconButton>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu-icon lucide-menu"><path d="M4 12h16" /><path d="M4 18h16" /><path d="M4 6h16" /></svg>                                </IconButton>
                             </Box>
                         )}
 
