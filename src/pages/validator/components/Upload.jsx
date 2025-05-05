@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Button, Input, Box, Snackbar, Alert } from '@mui/material';
-import { CloudUpload as CloudUploadIcon, PlayCircleOutline as PlayCircleOutlineIcon } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import styles from './Upload.module.css';
 import { truncateFileName } from '../../../utils/Formatters';
@@ -66,7 +65,8 @@ const Upload = () => {
                         variant="contained"
                         component="span"
                         color="primary"
-                        startIcon={<CloudUploadIcon />}
+                        startIcon={
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-upload-icon lucide-cloud-upload"><path d="M12 13v8" /><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" /><path d="m8 17 4-4 4 4" /></svg>}
                         className={styles.uploadButton}
                     >
                         {selectedFile ? truncateFileName(selectedFile.name) : 'Escolher Arquivo'}
@@ -86,7 +86,8 @@ const Upload = () => {
                     variant="contained"
                     color="secondary"
                     onClick={handleTriggerQueue}
-                    startIcon={<PlayCircleOutlineIcon />}
+                    startIcon={
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-play-icon lucide-circle-play"><circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" /></svg>}
                     className={styles.actionButton}
                 >
                     Disparar Fila

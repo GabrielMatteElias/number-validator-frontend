@@ -1,4 +1,4 @@
-import { Pie, Doughnut, Bar } from 'react-chartjs-2';
+import { Pie, Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
     ArcElement,

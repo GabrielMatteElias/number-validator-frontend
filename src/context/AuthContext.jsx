@@ -19,12 +19,8 @@ export function AuthProvider({ children }) {
             if (token) {
                 try {
                     const response = await checkTokenValidityService(token);
-                    console.log(response);
-
                     setUser(prev => ({ ...prev, ...response.data.user }));
                 } catch (err) {
-                    console.log(err);
-
                     localStorage.removeItem('token');
                 }
             }

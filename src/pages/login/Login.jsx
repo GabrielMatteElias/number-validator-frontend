@@ -3,6 +3,7 @@ import { TextField, Button, Typography, Box, Alert } from '@mui/material';
 import styles from './Login.module.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import SEO from '../../components/SEO';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -41,57 +42,65 @@ const Login = () => {
     };
 
     return (
-        <Box className={styles.container}>
-            <Box className={styles.formContainer}>
-                <Typography variant="h4" color='success' className={styles.title} gutterBottom>
-                    Valida<Typography variant='span' color='primary'>Whats</Typography>
-                </Typography>
+        <>
+            <SEO
+                title="ValidaWhats - Entrar"
+                description="Acesse sua conta para validar números de WhatsApp com eficiência."
+                url='https://validaWhats.com/login'
+            />
+            <Box className={styles.container}>
+                <Box className={styles.formContainer}>
+                    <Typography variant="h4" color='success' className={styles.title} gutterBottom>
+                        Valida<Typography variant='span' color='primary'>Whats</Typography>
+                    </Typography>
 
-                {showSuccess && (
-                    <Alert severity="success" sx={{ mb: 3 }}>
-                        Cadastro realizado com sucesso!
-                    </Alert>
-                )}
-                <Box component='form' className={styles.form} onSubmit={handleLogin} noValidate>
-                    <TextField
-                        label="Email"
-                        variant="outlined"
-                        fullWidth
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <TextField
-                        label="Senha"
-                        type="password"
-                        variant="outlined"
-                        fullWidth
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-
-                    {error && (
-                        <Alert severity="error">
-                            {error}
+                    {showSuccess && (
+                        <Alert severity="success" sx={{ mb: 3 }}>
+                            Cadastro realizado com sucesso!
                         </Alert>
                     )}
+                    <Box component='form' className={styles.form} onSubmit={handleLogin} noValidate>
+                        <TextField
+                            label="Email"
+                            variant="outlined"
+                            fullWidth
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <TextField
+                            label="Senha"
+                            type="password"
+                            variant="outlined"
+                            fullWidth
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
 
-                    <Button
-                        className={styles.button}
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        disabled={loading}
-                        fullWidth
-                    >
-                        {loading ? 'Entrando...' : 'Entrar'}
-                    </Button>
+                        {error && (
+                            <Alert severity="error">
+                                {error}
+                            </Alert>
+                        )}
+
+                        <Button
+                            className={styles.button}
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            disabled={loading}
+                            fullWidth
+                        >
+                            {loading ? 'Entrando...' : 'Entrar'}
+                        </Button>
+                    </Box>
+
+                    <Typography className={styles.footerText}>
+                        Não tem conta? <Link to='/cadastro'><Typography color="primary" variant='p'>Cadastre-se</Typography></Link>
+                    </Typography>
                 </Box>
-
-                <Typography className={styles.footerText}>
-                    Não tem conta? <Link to='/register'><Typography color="primary" variant='p'>Cadastre-se</Typography></Link>
-                </Typography>
             </Box>
-        </Box>
+        </>
+
     );
 };
 

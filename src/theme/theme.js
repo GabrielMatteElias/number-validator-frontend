@@ -4,8 +4,8 @@ const theme = createTheme({
     palette: {
         primary: {
             main: '#1976D2',
-            dark: '#1565C0', 
-            light: '#42A5F5', 
+            dark: '#1565C0',
+            light: '#42A5F5',
             hover: '#64B5F6',
         },
         secondary: {
@@ -158,6 +158,32 @@ const theme = createTheme({
             styleOverrides: {
                 tooltip: {
                     fontSize: '1.1rem', // Alterando o tamanho da fonte
+                },
+            },
+        },
+        MuiMenu: {
+            styleOverrides: {
+                paper: {
+                    minWidth: 150,
+                    padding: 8, // equivalente a p:1 (8px)
+                    marginTop: 8, // equivalente a mt:1 (8px)
+                },
+            },
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    transition: 'all 0.3s',
+                    color: '#000',
+                    fontWeight: 400,
+                    fontSize: '1.2rem',
+                    '&:hover': {
+                        color: (theme) => theme.palette.text.secondary,
+                        backgroundColor: 'transparent',
+                    },
+                    '&.Mui-focusVisible': {
+                        backgroundColor: 'transparent', // Remove o background no focus
+                    },
                 },
             },
         },

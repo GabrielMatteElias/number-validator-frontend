@@ -2,6 +2,7 @@ import { Box, Card, CardContent, Typography, Grid, useMediaQuery, useTheme } fro
 import Graphics from './components/Graphics';
 import { useEffect } from 'react';
 import { useApi } from '../../services/useApi';
+import SEO from '../../components/SEO';
 
 const Dashboard = () => {
     const totalNumeros = 23800;
@@ -16,7 +17,6 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             // const response = await getUserDashboard();
-            // console.log('Dados do Dashboard:', response);
         };
         fetchData();
     }, []);
@@ -66,97 +66,99 @@ const Dashboard = () => {
     };
 
     return (
-        <Box p={isSmallMobile ? 2 : 4}>
-            <Typography variant={isMobile ? "h5" : "h4"} fontWeight="bold" mb={2}>
-                Dashboard de Validações
-            </Typography>
-
-            {/* Primeiro Card - Estatísticas e Gráfico de Pizza */}
-            <Card sx={{ mb: 3 }}>
-                <CardContent>
-                    <Grid container spacing={3}>
-                        {/* Cards de Estatísticas */}
-                        <Grid item xs={12} md={4}>
-                            <Grid container direction="column" spacing={2}>
-                                <Grid item>
-                                    <Card variant="outlined">
-                                        <CardContent>
-                                            <Typography variant={isMobile ? "subtitle1" : "h6"} color="textSecondary">
-                                                Total de Números
-                                            </Typography>
-                                            <Typography variant={isMobile ? "h5" : "h4"} fontWeight="bold">
-                                                {totalNumeros.toLocaleString('pt-BR')}
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                                <Grid item>
-                                    <Card variant="outlined">
-                                        <CardContent>
-                                            <Typography variant={isMobile ? "subtitle1" : "h6"} color="textSecondary">
-                                                Números Válidos
-                                            </Typography>
-                                            <Typography
-                                                variant={isMobile ? "h5" : "h4"}
-                                                fontWeight="bold"
-                                                color="success.main"
-                                            >
-                                                {numerosValidos.toLocaleString('pt-BR')}
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                                <Grid item>
-                                    <Card variant="outlined">
-                                        <CardContent>
-                                            <Typography variant={isMobile ? "subtitle1" : "h6"} color="textSecondary">
-                                                Números Inválidos
-                                            </Typography>
-                                            <Typography
-                                                variant={isMobile ? "h5" : "h4"}
-                                                fontWeight="bold"
-                                                color="error.main"
-                                            >
-                                                {numerosInvalidos.toLocaleString('pt-BR')}
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
+        <>
+            <SEO
+                title="ValidaWhats - Dashboard"
+                description="Visualize o total de números validados e analise com gráficos dinâmicos e dados atualizados."
+                url='https://validaWhats.com/dashboard'
+            />            
+            <Box p={isSmallMobile ? 2 : 4}>
+                <Typography variant={isMobile ? "h5" : "h4"} fontWeight="bold" mb={2}>
+                    Dashboard de Validações
+                </Typography>
+                <Card sx={{ mb: 3 }}>
+                    <CardContent>
+                        <Grid container spacing={3}>
+                            <Grid>
+                                <Grid container direction="column" spacing={2}>
+                                    <Grid>
+                                        <Card variant="outlined">
+                                            <CardContent>
+                                                <Typography variant={isMobile ? "subtitle1" : "h6"} color="textSecondary">
+                                                    Total de Números
+                                                </Typography>
+                                                <Typography variant={isMobile ? "h5" : "h4"} fontWeight="bold">
+                                                    {totalNumeros.toLocaleString('pt-BR')}
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                    <Grid>
+                                        <Card variant="outlined">
+                                            <CardContent>
+                                                <Typography variant={isMobile ? "subtitle1" : "h6"} color="textSecondary">
+                                                    Números Válidos
+                                                </Typography>
+                                                <Typography
+                                                    variant={isMobile ? "h5" : "h4"}
+                                                    fontWeight="bold"
+                                                    color="success.main"
+                                                >
+                                                    {numerosValidos.toLocaleString('pt-BR')}
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                    <Grid>
+                                        <Card variant="outlined">
+                                            <CardContent>
+                                                <Typography variant={isMobile ? "subtitle1" : "h6"} color="textSecondary">
+                                                    Números Inválidos
+                                                </Typography>
+                                                <Typography
+                                                    variant={isMobile ? "h5" : "h4"}
+                                                    fontWeight="bold"
+                                                    color="error.main"
+                                                >
+                                                    {numerosInvalidos.toLocaleString('pt-BR')}
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>
 
-                        {/* Gráfico de Pizza */}
-                        <Grid item xs={12} md={8}>
-                            <Graphics
-                                largura={'100%'}
-                                altura={isMobile ? '200px' : '250px'}
-                                chartData={pieData}
-                                chartType={1}
-                            />
+                            <Grid>
+                                <Graphics
+                                    largura={'100%'}
+                                    altura={isMobile ? '200px' : '250px'}
+                                    chartData={pieData}
+                                    chartType={1}
+                                />
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </CardContent>
-            </Card>
+                    </CardContent>
+                </Card>
 
-            {/* Segundo Card - Gráfico de Barras */}
-            <Card>
-                <CardContent>
-                    <Typography
-                        variant={isMobile ? "subtitle1" : "h6"}
-                        color="textSecondary"
-                        mb={1}
-                    >
-                        Validações por Mês
-                    </Typography>
-                    <Graphics
-                        chartData={barData}
-                        chartType={2}
-                        largura="100%"
-                        altura={isMobile ? '200px' : '250px'}
-                    />
-                </CardContent>
-            </Card>
-        </Box>
+                <Card>
+                    <CardContent>
+                        <Typography
+                            variant={isMobile ? "subtitle1" : "h6"}
+                            color="textSecondary"
+                            mb={1}
+                        >
+                            Validações por Mês
+                        </Typography>
+                        <Graphics
+                            chartData={barData}
+                            chartType={2}
+                            largura="100%"
+                            altura={isMobile ? '200px' : '250px'}
+                        />
+                    </CardContent>
+                </Card>
+            </Box>
+        </>
     );
 };
 

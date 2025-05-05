@@ -19,7 +19,7 @@ const AppRoutes = () => {
             <AuthProvider>
                 <Routes>
                     <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
+                    <Route path="/cadastro" element={<Register />} />
 
                     {/* Layout geral */}
                     <Route path="/" element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
