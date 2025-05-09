@@ -1,4 +1,6 @@
 # Checklist de Implementação
+teste1@teste.com
+teste
 
 ## 📊 Relatórios
 - [ ] Botão para disparar fila

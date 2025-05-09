@@ -14,12 +14,18 @@ export function AuthProvider({ children }) {
 
     // Verifica se há usuário logado ao carregar o app
     useEffect(() => {
+        console.log('Verificando token...');
+        
         async function loadUserFromStorage() {
             const token = localStorage.getItem('token');
             if (token) {
                 try {
                     const response = await checkTokenValidityService(token);
+                    console.log(response);
+                    
                     setUser(prev => ({ ...prev, ...response.data.user }));
+                    console.log(user);
+                    
                 } catch (err) {
                     localStorage.removeItem('token');
                 }
@@ -37,7 +43,11 @@ export function AuthProvider({ children }) {
 
             setUser(prev => ({ ...prev, ...response.data }));
 
-            localStorage.setItem('token', response.data.token);
+            const token = response.data.token.replace(/^['"]|['"]$/g, '');
+            console.log(token);
+            
+
+            localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(response.data.codigo_usuario));
             navigate('/')
         } catch (err) {

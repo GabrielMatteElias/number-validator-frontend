@@ -5,6 +5,7 @@ import FileDetailsDialog from './components/FileDetailsDialog';
 import { formatDate } from '../../utils/Formatters';
 import { useApi } from '../../services/useApi';
 import SEO from '../../components/SEO';
+import { useAuth } from '../../context/AuthContext';
 
 const ReportSection = () => {
     const [reports, setReports] = useState([
@@ -19,6 +20,9 @@ const ReportSection = () => {
     const [selectedData, setSelectedData] = useState([]);
 
     const { getReports, getReportsDetails } = useApi();
+
+    const { user } = useAuth();
+    console.log(user);
 
     // Dados chumbados para a tabela
     const reportsDialog = [
