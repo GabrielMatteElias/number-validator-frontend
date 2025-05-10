@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Backdrop, CircularProgress } from '@mui/material';
+import { Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, useMediaQuery, CircularProgress } from '@mui/material';
 import Upload from './components/Upload';
 import FileDetailsDialog from './components/FileDetailsDialog';
 import { formatDate } from '../../utils/Formatters';
 import { useApi } from '../../services/useApi';
 import SEO from '../../components/SEO';
 import { useAuth } from '../../context/AuthContext';
+import MobileBottomSheet from './components/FileDetailsDialogMobile';
+import { useNavigate } from 'react-router-dom';
 
 const ReportSection = () => {
     const [reports, setReports] = useState([
@@ -22,24 +24,50 @@ const ReportSection = () => {
     const { getReports, getReportsDetails } = useApi();
 
     const { user } = useAuth();
-    console.log(user);
+
+    const isMobile = useMediaQuery('(max-width:600px)');
+
+    const navigate = useNavigate();
 
     // Dados chumbados para a tabela
     const reportsDialog = [
-        {
-            numero: '4588512466',
-            status: true,
-        },
-        {
-            numero: '1786247515',
-            status: false,
-        },
-
+        { numero: '7391824650', status: true },
+        { numero: '2154879632', status: false },
+        { numero: '8465201397', status: true },
+        { numero: '3901572846', status: false },
+        { numero: '6248395710', status: true },
+        { numero: '1572938465', status: false },
+        { numero: '4826017359', status: true },
+        { numero: '9035728164', status: false },
+        { numero: '3619472850', status: true },
+        { numero: '7285041963', status: false },
+        { numero: '4958321067', status: true },
+        { numero: '8164739250', status: false },
+        { numero: '2503968471', status: true },
+        { numero: '6739182540', status: false },
+        { numero: '9374610258', status: true },
+        { numero: '1047283956', status: false },
+        { numero: '5820394716', status: true },
+        { numero: '4296758031', status: false },
+        { numero: '7563124980', status: true },
+        { numero: '3184905672', status: false },
+        { numero: '9641273850', status: true },
+        { numero: '5072839164', status: false },
+        { numero: '1836592047', status: true },
+        { numero: '6924708315', status: false },
+        { numero: '3409185672', status: true },
+        { numero: '8716253904', status: false },
+        { numero: '5263891047', status: true },
+        { numero: '1947382056', status: false },
+        { numero: '6035728194', status: true },
+        { numero: '2874950316', status: false }
     ];
 
     useEffect(() => {
         async function fetchData() {
             // const response = await getReports();
+            // console.log(response);
+
             // if (response.satus_code === 200) {
             //     setReports(response.status_res)
             // }
@@ -47,6 +75,12 @@ const ReportSection = () => {
         }
         fetchData();
     }, []);
+
+    useEffect(() => {
+        if (!user) {
+            navigate('/login');
+        }
+    }, [user]);
 
     const handleOpenDialog = async (data) => {
         setSelectedData([])
@@ -61,6 +95,8 @@ const ReportSection = () => {
     const handleCloseDialog = () => {
         setOpenDialog(false);
     };
+
+    if (!user) return null;
 
     return (
         <>
@@ -141,7 +177,11 @@ const ReportSection = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <FileDetailsDialog open={openDialog} onClose={handleCloseDialog} data={selectedData} />
+                {isMobile ? (
+                    <MobileBottomSheet open={openDialog} onClose={handleCloseDialog} data={selectedData} />
+                ) : (
+                    <FileDetailsDialog open={openDialog} onClose={handleCloseDialog} data={selectedData} />
+                )}
             </Box>
         </>
     );

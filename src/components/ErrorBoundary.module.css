@@ -1,0 +1,24 @@
+.errorContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #EF4444;
+    /* Cor de erro */
+    color: #111827;
+    /* Cor primária do texto */
+    text-align: center;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.errorTitle {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.errorMessage {
+    margin-top: 1rem;
+    font-size: 1.125rem;
+}

@@ -1,13 +1,42 @@
 import { Box, Typography, Card, CardContent, LinearProgress, Button, Tooltip, Chip } from '@mui/material';
 import styles from './Profile.module.css';
 import SEO from '../../components/SEO';
+import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useApi } from '../../services/useApi';
 
 const Profile = () => {
+    const [userProfile, setUserProfile] = useState({})
+
+    const { user } = useAuth();
+    const { getUserData } = useApi();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await getUserData();
+
+            if (response.status_code === 200) {
+
+                setUserProfile(response.status_res)
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        if (!user) {
+            navigate('/login');
+        }
+    }, [user]);
 
     const usuario = {
         nome: 'João da Silva',
         email: 'joao@email.com',
-        planoAtual: { quantidade: 1000, usados: 896 }
+        planoAtual: { quantidade: 1000, usados: 800 }
     };
 
     const pacotes = [
@@ -17,7 +46,11 @@ const Profile = () => {
         { id: 4, quantidade: 10000, preco: 150 },
     ];
 
-    const progresso = (usuario.planoAtual.usados / usuario.planoAtual.quantidade) * 100;
+    const progresso = (total, used) => {        
+        return used / total  * 100;
+    }
+
+    if (!user) return null;
 
     return (
         <>
@@ -31,8 +64,8 @@ const Profile = () => {
                     <CardContent>
                         {/* User info section */}
                         <Box className={styles.userInfo}>
-                            <Typography variant="h6" className={styles.userName}>{usuario.nome}</Typography>
-                            <Typography variant="body2" className={styles.userEmail}>{usuario.email}</Typography>
+                            <Typography variant="h6" className={styles.userName}>{userProfile.nome}</Typography>
+                            <Typography variant="body2" className={styles.userEmail}>{userProfile.email}</Typography>
                         </Box>
 
                         {/* Numbers available section */}
@@ -43,14 +76,14 @@ const Profile = () => {
                         <Box className={styles.numbersContainer}>
                             <Box>
                                 <Typography variant="h5" className={styles.numbersAvailable}>
-                                    {`${usuario.planoAtual.quantidade - usuario.planoAtual.usados} `}
+                                    {`${userProfile.total_usado_validacao} `}
                                 </Typography>
                                 <Typography variant="body1" className={styles.numbersTotal}>
-                                    de {usuario.planoAtual.quantidade}
+                                    de {userProfile.total_validacao}
                                 </Typography>
                             </Box>
                             <Chip
-                                label={`${Math.round(progresso)}% utilizado`}
+                                label={`${Math.round(progresso(userProfile.total_validacao, userProfile.total_usado_validacao))}% utilizado`}
                                 size="medium"
                                 className={styles.usageChip}
                                 color={progresso > 75 ? 'warning' : 'primary'}
@@ -61,7 +94,7 @@ const Profile = () => {
                         <Tooltip title={`${usuario.planoAtual.usados} números utilizados`} arrow>
                             <LinearProgress
                                 variant="determinate"
-                                value={progresso}
+                                value={progresso(userProfile.total_validacao, userProfile.total_usado_validacao)}
                                 className={styles.progressBar}
                                 color={progresso > 80 ? 'warning' : 'primary'}
                             />

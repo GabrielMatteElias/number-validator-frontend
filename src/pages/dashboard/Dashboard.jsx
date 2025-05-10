@@ -1,31 +1,57 @@
 import { Box, Card, CardContent, Typography, Grid, useMediaQuery, useTheme } from '@mui/material';
 import Graphics from './components/Graphics';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useApi } from '../../services/useApi';
 import SEO from '../../components/SEO';
+import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-    const totalNumeros = 23800;
-    const numerosValidos = 15200;
-    const numerosInvalidos = 8600;
+    const [numeros, setNumeros] = useState({
+        total: 0,
+        validos: 0,
+        invalidos: 0,
+    });
+
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const isSmallMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     const { getUserDashboard } = useApi();
 
+    const { user } = useAuth();
+
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchData = async () => {
-            // const response = await getUserDashboard();
+            const response = await getUserDashboard();
+
+            if (response.status_code === 200) {
+
+                setNumeros({
+                    ...numeros,
+                    total: response.status_res.total_usado_validacao,
+                    validos: response.status_res.total_whatsapp_validos,
+                    invalidos: response.status_res.total_whatsapp_invalidos,
+                });
+            }
         };
+
         fetchData();
     }, []);
+
+    useEffect(() => {
+        if (!user) {
+            navigate('/login');
+        }
+    }, [user]);
 
     const pieData = {
         labels: ['Válidos', 'Inválidos'],
         datasets: [
             {
-                data: [numerosValidos, numerosInvalidos],
+                data: [numeros.validos, numeros.invalidos],
                 backgroundColor: ['#10B981', '#EF4444'],
                 hoverBackgroundColor: ['#059669', '#DC2626'],
             },
@@ -65,15 +91,17 @@ const Dashboard = () => {
         ],
     };
 
+    if (!user) return null;
+
     return (
         <>
             <SEO
                 title="ValidaWhats - Dashboard"
                 description="Visualize o total de números validados e analise com gráficos dinâmicos e dados atualizados."
                 url='https://validaWhats.com/dashboard'
-            />            
+            />
             <Box p={isSmallMobile ? 2 : 4}>
-                <Typography variant={isMobile ? "h5" : "h4"} fontWeight="bold" mb={2}>
+                <Typography variant={isMobile ? "h5" : "h6"} fontWeight="bold" sx={{ fontWeight: 600, fontSize: '2rem', marginBottom: '1rem' }}>
                     Dashboard de Validações
                 </Typography>
                 <Card sx={{ mb: 3 }}>
@@ -88,7 +116,7 @@ const Dashboard = () => {
                                                     Total de Números
                                                 </Typography>
                                                 <Typography variant={isMobile ? "h5" : "h4"} fontWeight="bold">
-                                                    {totalNumeros.toLocaleString('pt-BR')}
+                                                    {numeros.total.toLocaleString('pt-BR')}
                                                 </Typography>
                                             </CardContent>
                                         </Card>
@@ -104,7 +132,7 @@ const Dashboard = () => {
                                                     fontWeight="bold"
                                                     color="success.main"
                                                 >
-                                                    {numerosValidos.toLocaleString('pt-BR')}
+                                                    {numeros.validos.toLocaleString('pt-BR')}
                                                 </Typography>
                                             </CardContent>
                                         </Card>
@@ -120,7 +148,7 @@ const Dashboard = () => {
                                                     fontWeight="bold"
                                                     color="error.main"
                                                 >
-                                                    {numerosInvalidos.toLocaleString('pt-BR')}
+                                                    {numeros.invalidos.toLocaleString('pt-BR')}
                                                 </Typography>
                                             </CardContent>
                                         </Card>

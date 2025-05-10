@@ -1,9 +1,30 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Table, TableBody, TableCell, TableHead, TableRow, Button, TableContainer, Box, CircularProgress, Paper, InputAdornment } from '@mui/material';
+import {
+    SwipeableDrawer,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    TableContainer,
+    Box,
+    CircularProgress,
+    Paper,
+    InputAdornment,
+    styled,
+    Typography
+} from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { formatPhoneNumber } from '../../../utils/Formatters';
 import { useState } from 'react';
 
-const FileDetailsDialog = ({ open, onClose, data }) => {
+// Componente estilizado para o Paper do Drawer
+const StyledDrawerPaper = styled(Paper)(({ theme }) => ({
+    borderTopLeftRadius: '16px',
+    borderTopRightRadius: '16px',
+    padding: theme.spacing(2),
+}));
+
+const MobileBottomSheet = ({ open, onClose, data }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const filteredData = data.filter(item =>
@@ -11,9 +32,32 @@ const FileDetailsDialog = ({ open, onClose, data }) => {
     );
 
     return (
-        <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
-            <DialogTitle>Detalhes do Arquivo</DialogTitle>
-            <DialogContent>
+        <SwipeableDrawer
+            anchor="bottom"
+            open={open}
+            onClose={onClose}
+            onOpen={() => { }}
+            disableSwipeToOpen={true}
+            PaperProps={{
+                sx: {
+                    borderTopLeftRadius: '16px',
+                    borderTopRightRadius: '16px',
+                    maxHeight: '90vh',
+                }
+            }}
+        >
+            <Box sx={{ p: 2 }}>
+                {/* Indicador de arraste */}
+                <Box sx={{
+                    width: 40,
+                    height: 4,
+                    backgroundColor: "#ddd",
+                    borderRadius: 2,
+                    margin: "0 auto 16px"
+                }} />
+
+                {/* Campo de pesquisa */}
+                <Typography mb={.5}>Detalhes do arquivo</Typography>
                 <TextField
                     fullWidth
                     variant="outlined"
@@ -29,7 +73,18 @@ const FileDetailsDialog = ({ open, onClose, data }) => {
                         ),
                     }}
                 />
-                <TableContainer component={Paper} sx={{ overflowX: 'auto', maxHeight: '65vh', boxShadow: 'none' }}>
+
+                {/* Tabela de resultados */}
+                <TableContainer
+                    component={StyledDrawerPaper}
+                    sx={{
+                        overflowX: 'auto',
+                        maxHeight: '55vh',
+                        boxShadow: 'none',
+                        borderRadius: '8px',
+                        paddingTop: 0
+                    }}
+                >
                     <Table stickyHeader >
                         <TableHead>
                             <TableRow>
@@ -83,14 +138,9 @@ const FileDetailsDialog = ({ open, onClose, data }) => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={onClose} color="primary">
-                    Fechar
-                </Button>
-            </DialogActions>
-        </Dialog>
+            </Box>
+        </SwipeableDrawer>
     );
-};
+}
 
-export default FileDetailsDialog;
+export default MobileBottomSheet;

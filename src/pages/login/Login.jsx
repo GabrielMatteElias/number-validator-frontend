@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { TextField, Button, Typography, Box, Alert } from '@mui/material';
+import { Button, Typography, Box, Alert } from '@mui/material';
+import TextField from '@mui/material/TextField';
+
 import styles from './Login.module.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -10,11 +12,17 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [showSuccess, setShowSuccess] = useState(false);
 
-    const { login, loading, error } = useAuth();
-
     const navigate = useNavigate();
-
     const location = useLocation();
+
+    const { login, loading, error, user } = useAuth();
+
+    useEffect(() => {
+        if (!loading && user) {
+            navigate('/');
+        }
+    }, [user, loading]);
+
 
     useEffect(() => {
         if (location.state?.registrationSuccess) {
@@ -40,6 +48,8 @@ const Login = () => {
 
         await login(email, password);
     };
+
+    if (user) return null;
 
     return (
         <>

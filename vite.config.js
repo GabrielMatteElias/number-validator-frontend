@@ -7,5 +7,18 @@ export default defineConfig({
   server: {
     host: '0.0.0.0', // Permite acesso externo
     port: 5173, // Porta padrão do Vite (opcional)
-  }
+  },
+  build: {
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+            router: ['react-router-dom'],
+          chart: ['chart.js'],
+          mui: ['@mui/material'],
+            axios: ['axios'],
+        },
+      },
+    },
+  },
 })

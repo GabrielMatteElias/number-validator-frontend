@@ -3,13 +3,13 @@ teste1@teste.com
 teste
 
 ## 📊 Relatórios
-- [ ] Botão para disparar fila
+- [x] Botão para disparar fila
 
 - [ ] Input para validador unitário
 
 - [ ] Adicionar à tabela:
-  - [ ] Campo observação
-  - [ ] Campo download de arquivo
+  - [x] Campo observação
+  - [x] Campo download de arquivo
   - [ ] Ajustes para validação unitária
 
 - [ ] Modal de detalhes com :
@@ -17,14 +17,14 @@ teste
     - [ ] CPF Válido
     - [ ] CPF Inválido
 
-  - [ ] Status:
-    - [ ] Válido
-    - [ ] Inválido
-    - [ ] Informação especial
+  - [x] Status:
+    - [x] Válido
+    - [x] Inválido
+    - [x] Informação especial
 
 ## 👤 Perfil
-- [ ] Alterar texto "Seu plano atual" → "Números disponíveis"
+- [x] Alterar texto "Seu plano atual" → "Números disponíveis"
 
 ## 🖥️ Footer
-- [ ] Estilização
-- [ ] Incluir email da empresa
+- [x] Estilização
+- [x] Incluir email da empresa

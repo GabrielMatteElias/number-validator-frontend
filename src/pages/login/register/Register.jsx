@@ -1,4 +1,6 @@
-import { Box, Button, TextField, Typography, Paper, Alert, CircularProgress } from '@mui/material';
+import { Box, Button, Typography, Paper, Alert, CircularProgress } from '@mui/material';
+import TextField from '@mui/material/TextField';
+
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Register.module.css';
 import { useApi } from '../../../services/useApi';

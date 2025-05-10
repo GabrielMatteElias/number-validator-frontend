@@ -1,0 +1,29 @@
+{
+  "name": "ValidaWhats",
+  "short_name": "ValidaWhats",
+  "description": "Validação de números de WhatsApp em massa com recursos de dashboard e estatísticas.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9FAFB",
+  "theme_color": "#1976D2",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ],
+  "colors": {
+    "primary": "#1976D2",
+    "primary_dark": "#1565C0",
+    "primary_light": "#42A5F5",
+    "primary_hover": "#64B5F6",
+    "secondary": "#E3E8EF",
+    "success": "#10B981",
+    "error": "#EF4444",
+    "warning": "#F59E0B",
+    "info": "#3B82F6",
+    "text_primary": "#111827",
+    "text_secondary": "#6B7280"
+  }
+}

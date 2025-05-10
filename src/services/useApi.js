@@ -60,7 +60,7 @@ export function useApi() {
             makeRequest({
                 method: 'post',
                 url: '/usuario/buscar',
-                data: { id: user.id },
+                data: { id: user?.id },
             }),
         [makeRequest]
     );
@@ -70,7 +70,7 @@ export function useApi() {
             makeRequest({
                 method: 'post',
                 url: '/usuario/dashboard',
-                data: { id: user.id },
+                data: { id: user?.id },
             }),
         [makeRequest]
     );
@@ -81,7 +81,7 @@ export function useApi() {
             makeRequest({
                 method: 'post',
                 url: '/fila/carregar',
-                data: { id: user.id },
+                data: { id: user?.id },
             }),
         [makeRequest]
     );
@@ -100,7 +100,7 @@ export function useApi() {
         (file) => {
             const formData = new FormData();
             formData.append('file', file);
-            formData.append('p_dados_request', JSON.stringify({ id: user.codigo_usuario }));
+            formData.append('p_dados_request', JSON.stringify({ id: user?.codigo_usuario }));
             
             return makeRequest({
                 method: 'put',
@@ -119,7 +119,7 @@ export function useApi() {
             makeRequest({
                 method: 'post',
                 url: '/fila/disparar',
-                data: { id: user.id },
+                data: { id: user?.id },
             }),
         [makeRequest]
     );
