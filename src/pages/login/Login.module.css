@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #f9fafb;
+    background: #f8f8f8;
     padding: 2rem;
 }
 
@@ -21,6 +21,7 @@
     font-weight: 700;
     margin-bottom: 0.5rem;
     font-size: 2.4rem;
+    color: #0d8e66;
 }
 
 .subtitle {

@@ -63,7 +63,7 @@ const Login = () => {
             />
             <Box className={styles.container}>
                 <Box className={styles.formContainer}>
-                    <Typography variant="h4" color='success' className={styles.title} gutterBottom>
+                    <Typography variant="h4" className={styles.title} gutterBottom>
                         Valida<Typography variant='span' color='primary'>Whats</Typography>
                     </Typography>
 
