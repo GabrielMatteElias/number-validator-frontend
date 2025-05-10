@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Button, Typography, Box, Alert } from '@mui/material';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
 import TextField from '@mui/material/TextField';
 
 import styles from './Login.module.css';

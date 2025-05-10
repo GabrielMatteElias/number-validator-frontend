@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { Button, Input, Box, Snackbar, Alert } from '@mui/material';
+import Button from '@mui/material/Button';
+import Input from '@mui/material/Input';
+import Box from '@mui/material/Box';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import { useTheme } from '@mui/material/styles';
 import styles from './Upload.module.css';
 import { truncateFileName } from '../../../utils/Formatters';

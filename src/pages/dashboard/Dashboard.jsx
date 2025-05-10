@@ -1,4 +1,10 @@
-import { Box, Card, CardContent, Typography, Grid, useMediaQuery, useTheme } from '@mui/material';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import Graphics from './components/Graphics';
 import { useEffect, useState } from 'react';
 import { useApi } from '../../services/useApi';

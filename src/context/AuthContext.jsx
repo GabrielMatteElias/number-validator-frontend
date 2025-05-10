@@ -22,10 +22,15 @@ export function AuthProvider({ children }) {
                     const response = await checkTokenValidityService(token);
 
                     if (response.status === 200) {
-                        setUser({id: response.data.id_usuario});                        
+                        setUser({ id: response.data.id_usuario });
                     }
 
                 } catch (err) {
+                    setError(
+                        err.response?.data?.detail ||
+                        err.message ||
+                        'Ocorreu um erro inesperado'
+                    );
                     localStorage.removeItem('token');
                 }
             }

@@ -1,4 +1,11 @@
-import { Box, Typography, Card, CardContent, LinearProgress, Button, Tooltip, Chip } from '@mui/material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import LinearProgress from '@mui/material/LinearProgress';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import Chip from '@mui/material/Chip';
 import styles from './Profile.module.css';
 import SEO from '../../components/SEO';
 import { useAuth } from '../../context/AuthContext';
@@ -69,7 +76,7 @@ const Profile = () => {
                         </Box>
 
                         {/* Numbers available section */}
-                        <Typography variant="subtitle1" className={styles.sectionTitle}>
+                        <Typography variant="subtitle1" >
                             Números disponíveis
                         </Typography>
 

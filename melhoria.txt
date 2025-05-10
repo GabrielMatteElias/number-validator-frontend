@@ -28,3 +28,6 @@ teste
 ## 🖥️ Footer
 - [x] Estilização
 - [x] Incluir email da empresa
+
+## Deploy
+- [ ] npm run lint(verifica logs, warnings e variaveis não utilizadas antes do deploy)

@@ -1,4 +1,9 @@
-import { Box, Container, Typography, Link, Divider, Stack } from '@mui/material';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import Divider from '@mui/material/Divider';
+import Stack from '@mui/material/Stack';
 
 const Footer = () => {
     return (

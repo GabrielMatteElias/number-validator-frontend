@@ -1,19 +1,18 @@
-import {
-    AppBar,
-    Toolbar,
-    Avatar,
-    Box,
-    Typography,
-    Popover,
-    Button,
-    IconButton,
-    Menu,
-    MenuItem,
-    useMediaQuery,
-    useTheme,
-    Container
-} from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Popover from '@mui/material/Popover';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import Container from '@mui/material/Container';
+
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
@@ -26,8 +25,6 @@ const Header = () => {
     const { user, logout } = useAuth();
 
     const userInitial = user?.name?.charAt(0)?.toUpperCase() || 'G';
-
-    const navigate = useNavigate();
 
     const handleAvatarClick = (event) => { setAnchorEl(event.currentTarget); };
     const handleMobileMenuClick = (event) => { setMobileMenuAnchor(event.currentTarget); };

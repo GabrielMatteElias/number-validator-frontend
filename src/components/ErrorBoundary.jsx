@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import styles from './ErrorBoundary.module.css'; // Importa as classes do CSS Module
-import { Typography, Box } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class ErrorBoundary extends Component {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 

@@ -8,7 +8,7 @@ const Dashboard = lazy(() => import('../pages/dashboard/Dashboard'))
 const Login = lazy(() => import('../pages/login/Login'));
 const Register = lazy(() => import('../pages/login/register/Register'));
 const Profile = lazy(() => import('../pages/profile/Profile'));
-//import NotFound from '../pages/NotFound';
+const NotFound = lazy(() => import('../pages/notFound/NotFound'));
 
 //Layout
 import MainLayout from '../layouts/MainLayout';
@@ -33,7 +33,7 @@ const AppRoutes = () => {
                                 <Route path='/perfil' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
                             </Route>
                             {/* Rotas inválidas */}
-                            {/* <Route path="*" element={<NotFound />} /> */}
+                            <Route path="*" element={<NotFound />} />
                         </Routes>
                     </Suspense>
                 </ErrorBoundary>
