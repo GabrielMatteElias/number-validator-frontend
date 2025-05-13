@@ -4,7 +4,8 @@ import { lazy, Suspense } from 'react';
 
 //Páginas
 const Validator = lazy(() => import('../pages/validator/Validator'));
-const Dashboard = lazy(() => import('../pages/dashboard/Dashboard'))
+const Home = lazy(() => import('../pages/home/Home.jsx'));
+const Dashboard = lazy(() => import('../pages/dashboard/Dashboard'));
 const Login = lazy(() => import('../pages/login/Login'));
 const Register = lazy(() => import('../pages/login/register/Register'));
 const Profile = lazy(() => import('../pages/profile/Profile'));
@@ -26,11 +27,13 @@ const AppRoutes = () => {
                             <Route path="/login" element={<Login />} />
                             <Route path="/cadastro" element={<Register />} />
                             {/* Layout geral */}
-                            <Route path="/" element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
-                                {/* Rotas internas */}
-                                <Route index element={<Validator />} />
-                                <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-                                <Route path='/perfil' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+                            <Route path="/" element={<MainLayout />}>
+                                {/* Home pública */}
+                                <Route index element={<Home />} />
+                                {/* Rotas protegidas */}
+                                <Route path="validador" element={<ProtectedRoute><Validator /></ProtectedRoute>} />
+                                <Route path="dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                                <Route path="perfil" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
                             </Route>
                             {/* Rotas inválidas */}
                             <Route path="*" element={<NotFound />} />

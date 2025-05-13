@@ -43,7 +43,7 @@ const FileDetailsDialog = ({ open, onClose, data }) => {
                         ),
                     }}
                 />
-                <TableContainer component={Paper} sx={{ overflowX: 'auto', maxHeight: '65vh', boxShadow: 'none' }}>
+                <TableContainer component={Paper} sx={{ overflowX: 'auto', maxHeight: '55vh', boxShadow: 'none' }}>
                     <Table stickyHeader >
                         <TableHead>
                             <TableRow>

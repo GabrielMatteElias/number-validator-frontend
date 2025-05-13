@@ -12,7 +12,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
@@ -35,6 +35,9 @@ const Header = () => {
     const open = Boolean(anchorEl);
     const mobileMenuOpen = Boolean(mobileMenuAnchor);
 
+    const location = useLocation();
+    const isHomepage = location.pathname === '/';
+
     return (
         <>
             <AppBar position="fixed" color="primary" elevation={1}>
@@ -51,7 +54,7 @@ const Header = () => {
                         </Box>
 
                         {/* Opções no centro (desktop) ou menu hamburger (mobile) */}
-                        {!isMobile ? (
+                        {!isMobile ? !isHomepage &&(
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 5 }}>
                                 <Link to="/">
                                     <Typography variant="link">Validador</Typography>
