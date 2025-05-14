@@ -213,6 +213,7 @@ const Home = () => {
                                             sx={{ backgroundColor: pkg.title === 'Personalizado' ? '#673ab7  ' : 'primary', '&:hover': { backgroundColor: pkg.title === 'Personalizado' ? '#5e35b1' : 'primary' } }}
                                             fullWidth
                                             className={styles.packageButton}
+                                            target="_blank"
                                             href={pkg.whatsappLink || "#cadastro"}>
                                             {pkg.buttonText}
                                         </Button>
