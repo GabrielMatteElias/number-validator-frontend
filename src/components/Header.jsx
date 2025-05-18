@@ -12,6 +12,9 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 
+import styles from './Header.module.css';
+
+
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
@@ -54,16 +57,7 @@ const Header = () => {
                         </Box>
 
                         {/* Opções no centro (desktop) ou menu hamburger (mobile) */}
-                        {!isMobile ? !isHomepage &&(
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                                <Link to="/">
-                                    <Typography variant="link">Validador</Typography>
-                                </Link>
-                                <Link to="/dashboard">
-                                    <Typography variant="link">Dashboard</Typography>
-                                </Link>
-                            </Box>
-                        ) : (
+                        {isMobile &&
                             <Box>
                                 <IconButton
                                     color="inherit"
@@ -72,14 +66,35 @@ const Header = () => {
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu-icon lucide-menu"><path d="M4 12h16" /><path d="M4 18h16" /><path d="M4 6h16" /></svg>                                </IconButton>
                             </Box>
-                        )}
+                        }
 
                         {/* Avatar à direita (apenas desktop) */}
                         {!isMobile && (
-                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <Avatar sx={{ cursor: 'pointer' }} onClick={handleAvatarClick}>
-                                    {userInitial}
-                                </Avatar>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                {user ? (
+                                    <Avatar sx={{ cursor: 'pointer' }} onClick={handleAvatarClick}>
+                                        {userInitial}
+                                    </Avatar>
+                                ) : (
+                                    <>
+                                        <Button
+                                            component={Link}
+                                            to="/login"
+                                            variant="text"
+                                            sx={{ textTransform: 'none', color: '#fff' }}
+                                        >
+                                            Entrar
+                                        </Button>
+                                        <Button
+                                            component={Link}
+                                            to="/cadastro"
+                                            variant="outlined"
+                                            sx={{ textTransform: 'none', color: '#fff' }}
+                                        >
+                                            Cadastrar-se
+                                        </Button>
+                                    </>
+                                )}
                             </Box>
                         )}
                     </Toolbar>
@@ -104,45 +119,23 @@ const Header = () => {
                         mt: 1,
                     }}
                 >
-                    <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, minWidth: 150 }}>
-                        <Button
-                            component={Link}
-                            to="/perfil"
-                            onClick={handleClose}
-                            sx={{
-                                justifyContent: 'flex-start',
-                                textTransform: 'none',
-                                transition: 'all 0.3s',
-                                color: '#000',
-                                fontWeight: 400,
-                                '&:hover': {
-                                    color: 'text.secondary',
-                                },
-                            }}
-                        >
+                    <Box className={styles.popoverMenu}>
+                        <Button component={Link} to="/validador" onClick={handleClose} className={styles.menuButton}>
+                            Validador
+                        </Button>
+                        <Button component={Link} to="/dashboard" onClick={handleClose} className={styles.menuButton}>
+                            Dashboard
+                        </Button>
+                        <Button component={Link} to="/perfil" onClick={handleClose} className={styles.menuButton}>
                             Perfil
                         </Button>
-
-                        <Button
-                            onClick={logout}
-                            sx={{
-                                justifyContent: 'flex-start',
-                                textTransform: 'none',
-                                transition: 'color 0.3s',
-                                color: '#000',
-                                fontWeight: 400,
-                                '&:hover': {
-                                    color: 'text.secondary',
-                                },
-                            }}
-                        >
-                            Logout
+                        <Button onClick={logout} className={styles.menuButton}>
+                            Sair
                         </Button>
                     </Box>
                 </Popover>
             )}
 
-            {/* Menu mobile */}
             {/* Menu mobile */}
             <Menu
                 anchorEl={mobileMenuAnchor}
@@ -157,36 +150,62 @@ const Header = () => {
                     horizontal: 'right',
                 }}
             >
-                <MenuItem
-                    component={Link}
-                    to="/"
-                    onClick={handleMobileMenuClose}
-                >
-                    Validador
-                </MenuItem>
-                <MenuItem
-                    component={Link}
-                    to="/dashboard"
-                    onClick={handleMobileMenuClose}
-                >
-                    Dashboard
-                </MenuItem>
-                <MenuItem
-                    component={Link}
-                    to="/perfil"
-                    onClick={handleMobileMenuClose}
-                >
-                    Perfil
-                </MenuItem>
-                <MenuItem
-                    onClick={() => {
-                        handleMobileMenuClose();
-                        logout();
-                    }}
-                >
-                    Logout
-                </MenuItem>
+                {user
+                    ? [
+                        <MenuItem
+                            key="validador"
+                            component={Link}
+                            to="/validador"
+                            onClick={handleMobileMenuClose}
+                        >
+                            Validador
+                        </MenuItem>,
+                        <MenuItem
+                            key="dashboard"
+                            component={Link}
+                            to="/dashboard"
+                            onClick={handleMobileMenuClose}
+                        >
+                            Dashboard
+                        </MenuItem>,
+                        <MenuItem
+                            key="perfil"
+                            component={Link}
+                            to="/perfil"
+                            onClick={handleMobileMenuClose}
+                        >
+                            Perfil
+                        </MenuItem>,
+                        <MenuItem
+                            key="logout"
+                            onClick={() => {
+                                handleMobileMenuClose();
+                                logout();
+                            }}
+                        >
+                            Sair
+                        </MenuItem>,
+                    ]
+                    : [
+                        <MenuItem
+                            key="login"
+                            component={Link}
+                            to="/login"
+                            onClick={handleMobileMenuClose}
+                        >
+                            Entrar
+                        </MenuItem>,
+                        <MenuItem
+                            key="cadastro"
+                            component={Link}
+                            to="/cadastro"
+                            onClick={handleMobileMenuClose}
+                        >
+                            Cadastrar-se
+                        </MenuItem>,
+                    ]}
             </Menu>
+
         </>
     );
 };

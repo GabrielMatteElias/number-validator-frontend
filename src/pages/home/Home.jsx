@@ -8,7 +8,7 @@ const Home = () => {
         {
             icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-upload-icon lucide-upload"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" x2="12" y1="3" y2="15" /></svg>,
             title: '1. Faça o Upload do Arquivo',
-            description: 'Envie um arquivo (.txt, .csv) contendo a lista de números de telefone que você deseja validar. Simples e rápido!',
+            description: 'Envie um arquivo (.csv) contendo a lista de números de telefone que você deseja validar. Simples e rápido!',
         },
         {
             icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check-icon lucide-circle-check"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>,
@@ -26,7 +26,7 @@ const Home = () => {
         {
             icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-gauge-icon lucide-gauge"><path d="m12 14 4-4" /><path d="M3.34 19a10 10 0 1 1 17.32 0" /></svg>,
             title: 'Validação Rápida e Eficiente',
-            description: 'Obtenha resultados em segundos. Nossa plataforma é otimizada para processar grandes volumes de números rapidamente.',
+            description: 'Resultados em poucos minutos. Nossa plataforma é otimizada para processar grandes volumes com eficiência e precisão.',
         },
         {
             icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check-icon lucide-circle-check"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>,
@@ -78,7 +78,7 @@ const Home = () => {
             buttonText: 'Solicitar Orçamento',
             buttonVariant: 'contained',
             color: 'success',
-            whatsappLink: 'https://wa.me/5551984287099?text=Olá! Gostaria de um plano personalizado com *____ validações*.'
+            whatsappLink: 'https://wa.me/5551984287099?text=Olá! Gostaria de um plano personalizado com ____ validações.'
         }
     ];
 
@@ -95,7 +95,7 @@ const Home = () => {
                     <Grid spacing={4} alignItems="center">
                         <Grid className={styles.heroContent}>
                             <Typography variant="h2" component="h1" gutterBottom className={styles.heroTitle}>
-                                Valide Números de WhatsApp Instantaneamente
+                                Valide Números de WhatsApp de Forma Eficiente
                             </Typography>
                             <Typography variant="h5" component="p" gutterBottom className={styles.heroSubtitle}>
                                 Descubra se um número de telefone pertence ao WhatsApp de forma rápida, fácil e segura. Otimize suas campanhas e contatos!
@@ -213,7 +213,7 @@ const Home = () => {
                                             sx={{ backgroundColor: pkg.title === 'Personalizado' ? '#673ab7  ' : 'primary', '&:hover': { backgroundColor: pkg.title === 'Personalizado' ? '#5e35b1' : 'primary' } }}
                                             fullWidth
                                             className={styles.packageButton}
-                                            target="_blank"
+                                            target={pkg.whatsappLink ? "_blank" : ''}
                                             href={pkg.whatsappLink || "#cadastro"}>
                                             {pkg.buttonText}
                                         </Button>
@@ -236,7 +236,7 @@ const Home = () => {
                             Cadastre-se gratuitamente no ValidaWhats e comece a validar seus números de telefone agora mesmo. Descubra o poder da validação inteligente!
                         </Typography>
                         <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
-                            <Link variant="contained" color="secondary" size="large" className={styles.ctaButton} to='/cadastro'>
+                            <Link variant="contained" color="secondary" size="large" className={styles.ctaButton} id="cadastro" to='/cadastro'>
                                 Criar Minha Conta Grátis
                             </Link>
                         </Box>

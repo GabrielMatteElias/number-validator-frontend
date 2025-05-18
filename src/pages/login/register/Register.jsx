@@ -143,8 +143,8 @@ const Register = () => {
 
                         <Typography variant="body2" textAlign="center">
                             Já tem uma conta?{' '}
-                            <Link to="/login" style={{ textDecoration: 'none' }}>
-                                <Typography component="span" color="primary">
+                            <Link to="/login" sx={{ textDecoration: 'none', fontWeight: 'bold' }}>
+                                <Typography component="span" color="primary" sx={{ fontWeight: 'bold' }}>
                                     Entrar
                                 </Typography>
                             </Link>

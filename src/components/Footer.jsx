@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -41,13 +42,16 @@ const Footer = () => {
                             spacing={{ xs: 2, sm: 1 }}
                             flexWrap="wrap"
                         >
-                            <Link href="/" color="inherit" underline="hover">
+                            <Link to="/" component={RouterLink} color="inherit" underline="hover">
+                                Página inicial
+                            </Link>
+                            <Link to="/validador" component={RouterLink} color="inherit" underline="hover">
                                 Validador
                             </Link>
-                            <Link href="/dashboard" color="inherit" underline="hover">
+                            <Link to="/dashboard" component={RouterLink} color="inherit" underline="hover">
                                 Dashboard
                             </Link>
-                            <Link href="/perfil" color="inherit" underline="hover">
+                            <Link to="/perfil" component={RouterLink} color="inherit" underline="hover">
                                 Perfil
                             </Link>
                         </Stack>

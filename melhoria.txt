@@ -29,5 +29,9 @@ teste
 - [x] Estilização
 - [x] Incluir email da empresa
 
+## 🏠 Home
+- [ ] Verificar tipo de arquivo para enviar no input para adicionar no texto "Faça o upload do arquivo"
+- [x] Incluir email da empresa
+
 ## Deploy
 - [ ] npm run lint(verifica logs, warnings e variaveis não utilizadas antes do deploy)

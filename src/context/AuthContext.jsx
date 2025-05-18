@@ -42,6 +42,8 @@ export function AuthProvider({ children }) {
     const login = async (email, password) => {
         setLoading(true);
         setError(null)
+        console.log('AQUI');
+        
         try {
             const response = await loginService(email, password);
 
@@ -50,7 +52,7 @@ export function AuthProvider({ children }) {
             const token = response.data.token.replace(/^['"]|['"]$/g, '');
 
             localStorage.setItem('token', token);
-            navigate('/')
+            navigate('/validador')
         } catch (err) {
             setError(
                 err.response?.data?.detail ||
