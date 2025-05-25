@@ -22,7 +22,6 @@ const Upload = () => {
     const handleFileChange = (e) => {
         setSelectedFile(e.target.files[0]);
     };
-console.log(error);
 
     const handleUpload = async () => {
         if (!selectedFile) {
@@ -34,7 +33,6 @@ console.log(error);
             setSnackbarSeverity(error);
 
         const response = await createQueue(selectedFile)
-        console.log('response');
 
         setOpenSnackbar(true);
         setSnackbarMessage(response.status_msg);
