@@ -11,7 +11,9 @@ teste
   - [x] Campo observação
   - [x] Campo download de arquivo
   - [ ] Ajustes para validação unitária
-
+  - [ ] Nome do arquivo exportado.zip
+  - [ ] Arquivo fazendo download mas erro ao abrir .csv
+  
 - [ ] Modal de detalhes com :
   - [ ] Novas abas:
     - [ ] CPF Válido

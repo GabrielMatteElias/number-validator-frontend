@@ -21,7 +21,7 @@ const FileDetailsDialog = ({ open, onClose, data }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const filteredData = data.filter(item =>
-        item.numero.toString().includes(searchTerm)
+        item.telefone.toString().includes(searchTerm)
     );
 
     return (
@@ -67,7 +67,7 @@ const FileDetailsDialog = ({ open, onClose, data }) => {
                                             bgcolor: row.status ? 'rgba(76, 175, 80, 0.08)' : 'rgba(244, 67, 54, 0.08)'
                                         }}
                                     >
-                                        <TableCell>{formatPhoneNumber(row.numero)}</TableCell>
+                                        <TableCell>{formatPhoneNumber(row.telefone)}</TableCell>
                                         <TableCell align="right">
                                             <Box
                                                 sx={{

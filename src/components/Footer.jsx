@@ -24,7 +24,7 @@ const Footer = () => {
                     alignItems={{xs: 'start-flex', md: 'row'}}
                     spacing={4}
                     sx={{ mb: 3 }}
-                    paddingLeft={{ xs: '10rem', md: '0' }}                    
+                    paddingLeft={{ xs: '5rem', md: '0' }}                    
                 >
                     <Box sx={{ maxWidth: 300 }}>
                                         <img src='/assets/validate.webp' alt="ValidaWhats - Validação de contatos de WhatsApp" width="150" height="36" loading="lazy"/>

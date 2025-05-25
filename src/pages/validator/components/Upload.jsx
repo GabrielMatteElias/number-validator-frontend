@@ -17,36 +17,48 @@ const Upload = () => {
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
-    const { createQueue, triggerQueue } = useApi();
+    const { createQueue, triggerQueue, error } = useApi();
 
     const handleFileChange = (e) => {
         setSelectedFile(e.target.files[0]);
     };
+console.log(error);
 
-    const handleUpload = () => {
+    const handleUpload = async () => {
         if (!selectedFile) {
             setSnackbarMessage('Por favor, selecione um arquivo primeiro.');
             setSnackbarSeverity('error');
             setOpenSnackbar(true);
             return;
         }
+            setSnackbarSeverity(error);
 
-        const response = createQueue(selectedFile)
+        const response = await createQueue(selectedFile)
+        console.log('response');
 
-        setSnackbarMessage('Arquivo enviado com sucesso!');
-        setSnackbarSeverity('success');
         setOpenSnackbar(true);
+        setSnackbarMessage(response.status_msg);
+
+        if (response.status_code === 200) {
+            setSnackbarSeverity('success');
+        } else {
+
+        }
 
         setSelectedFile('');
     };
 
-    const handleTriggerQueue = () => {
-
-        const response = triggerQueue(selectedFile)
-
-        setSnackbarMessage('Fila disparada com sucesso!');
-        setSnackbarSeverity('success');
+    const handleTriggerQueue = async () => {
+        const response = await triggerQueue()
         setOpenSnackbar(true);
+        setSnackbarMessage(response.status_msg);
+
+        if (response.status_code === 200) {
+            setSnackbarSeverity('success');
+            return;
+        } else {
+            setSnackbarSeverity('error');
+        }
     };
 
     const handleCloseSnackbar = () => {

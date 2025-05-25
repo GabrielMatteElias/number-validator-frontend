@@ -96,12 +96,21 @@ export function useApi() {
         [makeRequest]
     );
 
+    const exportFileReportDetails = useCallback(
+        (queueId) =>
+            makeRequest({
+                method: 'post',
+                url: '/fila/exportar-dados',
+                data: { id: queueId },
+            }),
+        [makeRequest]
+    );
+
     const createQueue = useCallback(
         (file) => {
             const formData = new FormData();
             formData.append('file', file);
-            formData.append('p_dados_request', JSON.stringify({ id: user?.codigo_usuario }));
-            
+            formData.append('p_dados_request', JSON.stringify({ usuario: user?.id }));
             return makeRequest({
                 method: 'put',
                 url: '/fila/criar',
@@ -137,6 +146,7 @@ export function useApi() {
         // Queue methods
         getReports,
         getReportsDetails,
+        exportFileReportDetails,
         createQueue,
         triggerQueue,
     };

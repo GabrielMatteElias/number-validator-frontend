@@ -24,32 +24,42 @@ const formatPhoneNumber = (phone) => {
     return phone;
 };
 
-//yyyy-mm-dd ---> dd-mm-yyyy
-const formatDate = (date) => {
-    if (!date || typeof date !== 'string') return '';
+//2025-05-06T21:52:10.679750 ---> 06/05/2025, 21:23
+const formatDateTime = (dateString) => {
+    if (!dateString) return '';
 
-    const parts = date.split('-');
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return '';
 
-    if (parts.length !== 3) return '';
-
-    const [year, month, day] = parts;
-
-    const isValid =
-        (year.length === 4 || year.length === 2) &&
-        month.length === 2 &&
-        day.length === 2 &&
-        !isNaN(Number(year)) &&
-        !isNaN(Number(month)) &&
-        !isNaN(Number(day));
-
-    if (!isValid) return '';
-
-    return `${day}/${month}/${year}`;
+    return new Intl.DateTimeFormat('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+    }).format(date).replace(',', '');
 };
+
+
+
+const toCamelCase = (obj) => {
+    if (Array.isArray(obj)) {
+        return obj.map(v => toCamelCase(v));
+    } else if (obj !== null && typeof obj === 'object') {
+        return Object.entries(obj).reduce((acc, [key, value]) => {
+            const camelKey = key.replace(/_([a-z])/g, (_, char) => char.toUpperCase());
+            acc[camelKey] = toCamelCase(value);
+            return acc;
+        }, {});
+    }
+    return obj;
+}
+
 
 
 export {
     truncateFileName,
     formatPhoneNumber,
-    formatDate
+    formatDateTime,
+    toCamelCase
 };

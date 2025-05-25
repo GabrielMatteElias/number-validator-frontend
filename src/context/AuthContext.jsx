@@ -42,7 +42,6 @@ export function AuthProvider({ children }) {
     const login = async (email, password) => {
         setLoading(true);
         setError(null)
-        console.log('AQUI');
         
         try {
             const response = await loginService(email, password);

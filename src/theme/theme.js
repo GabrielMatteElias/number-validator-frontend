@@ -95,7 +95,7 @@ const theme = createTheme({
 
                 },
                 root: {
-                    padding: '.8rem 1.9rem',
+                    padding: '0rem 1.2rem',
                     fontSize: '1.4rem', // Fonte maior nas células
                 },
             },
