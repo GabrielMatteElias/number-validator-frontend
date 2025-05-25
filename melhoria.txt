@@ -5,14 +5,12 @@ teste
 ## 📊 Relatórios
 - [x] Botão para disparar fila
 
-- [ ] Input para validador unitário
 
 - [ ] Adicionar à tabela:
   - [x] Campo observação
   - [x] Campo download de arquivo
-  - [ ] Ajustes para validação unitária
-  - [ ] Nome do arquivo exportado.zip
-  - [ ] Arquivo fazendo download mas erro ao abrir .csv
+  - [x] Nome do arquivo
+  - [ ] Back devolver a nova linha adicionada na tabela relatorios ao enviar um novo arquivo para validador  
   
 - [ ] Modal de detalhes com :
   - [ ] Novas abas:

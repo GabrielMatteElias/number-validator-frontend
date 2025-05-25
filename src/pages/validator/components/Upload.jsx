@@ -30,15 +30,16 @@ const Upload = () => {
             setOpenSnackbar(true);
             return;
         }
-            setSnackbarSeverity(error);
+        setSnackbarSeverity(error);
 
         const response = await createQueue(selectedFile)
 
         setOpenSnackbar(true);
-        setSnackbarMessage(response.status_msg);
 
         if (response.status_code === 200) {
             setSnackbarSeverity('success');
+            setSnackbarMessage('Arquivo enviado com sucesso! REVISAR');
+
         } else {
 
         }
