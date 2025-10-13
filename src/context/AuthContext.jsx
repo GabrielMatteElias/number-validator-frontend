@@ -14,7 +14,6 @@ export function AuthProvider({ children }) {
 
     // Verifica se há usuário logado ao carregar o app
     useEffect(() => {
-
         async function loadUserFromStorage() {
             const token = localStorage.getItem('token');
             if (token) {
@@ -31,18 +30,19 @@ export function AuthProvider({ children }) {
                         err.message ||
                         'Ocorreu um erro inesperado'
                     );
-                    localStorage.removeItem('token');
+                    // localStorage.removeItem('token');
                 }
             }
             setLoading(false);
         }
+
         loadUserFromStorage();
     }, []);
 
     const login = async (email, password) => {
         setLoading(true);
         setError(null)
-        
+
         try {
             const response = await loginService(email, password);
 
@@ -69,7 +69,7 @@ export function AuthProvider({ children }) {
         navigate('/login')
     };
 
-    const updateUser = (updatedData) => { // Atualiza os dados do usuário. Ex: atualizar quantidade de numeros disponiveis para validacao
+    const updateUser = (updatedData) => { // Atualiza os dados do usuário como a quantidade de numeros disponiveis para validacao
         setUser(prev => ({ ...prev, ...updatedData }));
     };
 
@@ -80,7 +80,6 @@ export function AuthProvider({ children }) {
     );
 }
 
-// Hook personalizado para usar o contexto
 export function useAuth() {
     return useContext(AuthContext);
 }

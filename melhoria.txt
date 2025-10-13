@@ -2,9 +2,11 @@
 teste1@teste.com
 teste
 
+## 🔐 Login
+- [] Esqueceu sua senha
+
 ## 📊 Relatórios
 - [x] Botão para disparar fila
-
 
 - [ ] Adicionar à tabela:
   - [x] Campo observação
