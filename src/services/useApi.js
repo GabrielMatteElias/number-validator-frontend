@@ -49,7 +49,7 @@ export function useApi() {
             makeRequest({
                 method: 'put',
                 url: '/usuario/criar',
-                data: { cpf, nome: name, email, senha: password },
+                data: { documento: cpf, nome: name, email, senha: password },
             }),
         [makeRequest]
     );
