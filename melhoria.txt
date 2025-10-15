@@ -1,6 +1,10 @@
-# Checklist de Implementação
-teste1@teste.com
-teste
+Login
+gabrielmatteelias@gmail.com
+validador1@
+
+Swagger
+superUsuario
+FuZCs4ArFT5YapOkpCi73RMFl2NTSS54Levk3Y2ZOin2yogteo
 
 ## 🔐 Login
 - [] Esqueceu sua senha

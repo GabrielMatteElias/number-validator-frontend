@@ -1,8 +1,11 @@
 import { Box, Button, Container, Grid, Card, CardActions, CardContent, CardMedia, Paper, Typography, Divider } from "@mui/material";
 import styles from './Home.module.css';
 import { Link } from "react-router-dom";
+import { useAuth } from '../../context/AuthContext';
 
 const Home = () => {
+
+    const { user } = useAuth();
 
     const steps = [
         {
@@ -88,6 +91,32 @@ const Home = () => {
         </svg>
     );
 
+    const isUserLoggedIn = user;
+
+    const LoggedOutHero = (
+        <Box mt={4}>
+            <Button variant="contained" color="primary" size="large" className={styles.ctaButtonPrimary} href="#cadastro">
+                Comece Agora - É Grátis!
+            </Button>
+            <Button variant="outlined" color="primary" size="large" className={styles.ctaButtonSecondary} sx={{ ml: 2 }} href="#como-funciona">
+                Saiba Mais
+            </Button>
+        </Box>
+    );
+
+    const LoggedInHero = (
+        <Box mt={4}>
+            {/* CTA Principal: Iniciar a Ação Principal do Sistema */}
+            <Button variant="contained" color="primary" size="large" className={styles.ctaButtonPrimary} component={Link} to='/validador'>
+                Validar Novo Arquivo Agora
+            </Button>
+            {/* CTA Secundária: Verificar o Status/Consumo */}
+            <Button variant="outlined" color="primary" size="large" className={styles.ctaButtonSecondary} sx={{ ml: 2 }} component={Link} to='/perfil'>
+                Ver Meus Créditos e Histórico
+            </Button>
+        </Box>
+    );
+
     return (
         <Box>
             <Box className={styles.heroBox}>
@@ -98,16 +127,10 @@ const Home = () => {
                                 Valide Números de WhatsApp de Forma Eficiente
                             </Typography>
                             <Typography variant="h5" component="p" gutterBottom className={styles.heroSubtitle}>
-                                Descubra se um número de telefone pertence ao WhatsApp de forma rápida, fácil e segura. Otimize suas campanhas e contatos!
+                                Otimize suas campanhas e contatos. Clique abaixo para iniciar uma nova validação ou gerenciar sua conta.
                             </Typography>
-                            <Box mt={4}>
-                                <Button variant="contained" color="primary" size="large" className={styles.ctaButtonPrimary} href="#cadastro">
-                                    Comece Agora - É Grátis!
-                                </Button>
-                                <Button variant="outlined" color="primary" size="large" className={styles.ctaButtonSecondary} sx={{ ml: 2 }} href="#como-funciona">
-                                    Saiba Mais
-                                </Button>
-                            </Box>
+                            {isUserLoggedIn ? LoggedInHero : LoggedOutHero}
+
                         </Grid>
                         <Grid className={styles.heroImageContainer}>
                             {/* Você pode adicionar uma imagem ou ilustração aqui */}
@@ -226,23 +249,44 @@ const Home = () => {
             </Box>
             <Divider />
 
-            <Box id="cadastro" className={styles.ctaBox}>
+            <Box id="cadastro-ou-recarga" className={styles.ctaBox}>
                 <Container maxWidth="md">
                     <Paper elevation={6} className={styles.ctaPaper}>
-                        <Typography variant="h3" component="h2" gutterBottom align="center" className={styles.ctaTitle}>
-                            Pronto para Otimizar Seus Contatos?
-                        </Typography>
-                        <Typography variant="h6" component="p" align="center" gutterBottom className={styles.ctaSubtitle}>
-                            Cadastre-se gratuitamente no ValidaWhats e comece a validar seus números de telefone agora mesmo. Descubra o poder da validação inteligente!
-                        </Typography>
-                        <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
-                            <Link variant="contained" color="secondary" size="large" className={styles.ctaButton} id="cadastro" to='/cadastro'>
-                                Criar Minha Conta Grátis
-                            </Link>
-                        </Box>
-                        <Typography variant="body2" align="center" sx={{ mt: 2, color: '#fff' }}>
-                            Pague em segundos com segurança total via PIX!
-                        </Typography>
+                        {isUserLoggedIn ? (
+                            <>
+                                <Typography variant="h3" component="h2" gutterBottom align="center" className={styles.ctaTitle}>
+                                    Precisa de Mais Validações?
+                                </Typography>
+                                <Typography variant="h6" component="p" align="center" gutterBottom className={styles.ctaSubtitle}>
+                                    Seus créditos estão acabando. Recarregue agora e não interrompa suas campanhas.
+                                </Typography>
+                                <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+                                    <Link className={styles.ctaButton} to='/perfil'>
+                                        Ver Planos e Recarregar
+                                    </Link>
+                                </Box>
+                            </>
+                        ) : (
+                            <>
+                                <Typography variant="h3" component="h2" gutterBottom align="center" className={styles.ctaTitle}>
+                                    Pronto para Otimizar Seus Contatos?
+                                </Typography>
+                                <Typography variant="h6" component="p" align="center" gutterBottom className={styles.ctaSubtitle}>
+                                    Cadastre-se gratuitamente no ValidaWhats e comece a validar seus números de telefone agora mesmo. Descubra o poder da validação inteligente!
+                                </Typography>
+                                <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+                                    <Link variant="contained" color="secondary" size="large" className={styles.ctaButton} id="cadastro" to='/cadastro'>
+                                        Criar Minha Conta Grátis
+                                    </Link>
+                                </Box>
+                                <Typography variant="body1" align="center" sx={{ mt: 2, color: '#fff', fontSize: '1.1rem' }}>
+                                    Já possui uma conta? {' '}
+                                    <Link to="/login" className={styles.loginLinkOnCta}>
+                                        Faça Login
+                                    </Link>
+                                </Typography>
+                            </>
+                        )}
                     </Paper>
                 </Container>
             </Box>

@@ -66,7 +66,7 @@ export function AuthProvider({ children }) {
     const logout = () => {
         setUser(null);
         localStorage.removeItem('token');
-        navigate('/login')
+        navigate('/')
     };
 
     const updateUser = (updatedData) => { // Atualiza os dados do usuário como a quantidade de numeros disponiveis para validacao

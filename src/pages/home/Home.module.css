@@ -111,6 +111,15 @@
   transform: translateY(-2px);
 }
 
+.loginLinkOnCta {
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.loginLinkOnCta:hover {
+    color: #ffffff;
+}
+
 .featuresBox {
   padding-top: 64px;
   padding-bottom: 64px;

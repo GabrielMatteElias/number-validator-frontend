@@ -53,8 +53,8 @@ const Profile = () => {
         { id: 4, quantidade: 10000, preco: 150 },
     ];
 
-    const progresso = (total, used) => {        
-        return used / total  * 100;
+    const progresso = (total, used) => {
+        return used / total * 100;
     }
 
     if (!user) return null;
