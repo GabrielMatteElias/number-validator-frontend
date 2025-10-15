@@ -39,7 +39,7 @@
 }
 
 .userEmail {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 .numbersContainer {
@@ -47,6 +47,10 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
+}
+
+.subtitle{
+    font-size: 1.2rem;
 }
 
 .numbersAvailable {
@@ -60,7 +64,7 @@
 }
 
 .usageChip {
-    font-size: 1rem !important;
+    font-size: 1.2rem;
 }
 
 .progressBar {

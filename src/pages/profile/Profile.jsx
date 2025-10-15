@@ -40,12 +40,6 @@ const Profile = () => {
         }
     }, [user]);
 
-    const usuario = {
-        nome: 'João da Silva',
-        email: 'joao@email.com',
-        planoAtual: { quantidade: 1000, usados: 800 }
-    };
-
     const pacotes = [
         { id: 1, quantidade: 1000, preco: 30 },
         { id: 2, quantidade: 2500, preco: 50, recomendado: true },
@@ -53,8 +47,8 @@ const Profile = () => {
         { id: 4, quantidade: 10000, preco: 150 },
     ];
 
-    const progresso = (total, used) => {
-        return used / total * 100;
+    const progresso = () => {
+        return userProfile?.total_usado_validacao / userProfile?.total_validacao * 100;
     }
 
     if (!user) return null;
@@ -76,36 +70,34 @@ const Profile = () => {
                         </Box>
 
                         {/* Numbers available section */}
-                        <Typography variant="subtitle1" >
-                            Números disponíveis
+                        <Typography variant="subtitle1" className={styles.subtitle} >
+                            Validações utilizadas
                         </Typography>
 
                         <Box className={styles.numbersContainer}>
                             <Box>
                                 <Typography variant="h5" className={styles.numbersAvailable}>
-                                    {`${userProfile.total_usado_validacao} `}
+                                    {userProfile.total_usado_validacao || 0}
                                 </Typography>
                                 <Typography variant="body1" className={styles.numbersTotal}>
                                     de {userProfile.total_validacao}
                                 </Typography>
                             </Box>
                             <Chip
-                                label={`${Math.round(progresso(userProfile.total_validacao, userProfile.total_usado_validacao))}% utilizado`}
+                                label={`${Math.round(progresso())}% utilizado`}
                                 size="medium"
                                 className={styles.usageChip}
-                                color={progresso > 75 ? 'warning' : 'primary'}
+                                color={progresso() > 75 ? 'warning' : 'primary'}
                             />
                         </Box>
 
-                        {/* Progress bar */}
-                        <Tooltip title={`${usuario.planoAtual.usados} números utilizados`} arrow>
-                            <LinearProgress
-                                variant="determinate"
-                                value={progresso(userProfile.total_validacao, userProfile.total_usado_validacao)}
-                                className={styles.progressBar}
-                                color={progresso > 80 ? 'warning' : 'primary'}
-                            />
-                        </Tooltip>
+                        <LinearProgress
+                            variant="determinate"
+                            // value={progresso(userProfile.total_validacao, userProfile.total_usado_validacao)}
+                            value={progresso()}
+                            className={styles.progressBar}
+                            color={progresso() > 80 ? 'warning' : 'primary'}
+                        />
                     </CardContent>
                 </Card>
 

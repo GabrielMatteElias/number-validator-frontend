@@ -129,6 +129,9 @@ const Header = () => {
                         <Button component={Link} to="/perfil" onClick={handleClose} className={styles.menuButton}>
                             Perfil
                         </Button>
+                        <Button component={Link} to="/perfil/alterar-senha" onClick={handleClose} className={styles.menuButton}>
+                            Alterar senha
+                        </Button>
                         <Button onClick={logout} className={styles.menuButton}>
                             Sair
                         </Button>
@@ -175,6 +178,14 @@ const Header = () => {
                             onClick={handleMobileMenuClose}
                         >
                             Perfil
+                        </MenuItem>,
+                        <MenuItem
+                            key="seguranca"
+                            component={Link}
+                            to="/perfil/alterar-senha"
+                            onClick={handleMobileMenuClose}
+                        >
+                            Alterar senha
                         </MenuItem>,
                         <MenuItem
                             key="logout"

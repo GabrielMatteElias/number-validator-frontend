@@ -16,6 +16,7 @@ import MainLayout from '../layouts/MainLayout';
 import ProtectedRoute from './PrivateRoutes';
 import Loading from '../components/Loading.jsx';
 import ErrorBoundary from '../components/ErrorBoundary.jsx';
+import AlterarSenha from '../pages/alterarSenha/alterarSenha.jsx';
 
 const AppRoutes = () => {
     return (
@@ -34,6 +35,7 @@ const AppRoutes = () => {
                                 <Route path="validador" element={<ProtectedRoute><Validator /></ProtectedRoute>} />
                                 <Route path="dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                                 <Route path="perfil" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+                                <Route path="perfil/alterar-senha" element={<ProtectedRoute><AlterarSenha /></ProtectedRoute>} />
                             </Route>
                             {/* Rotas inválidas */}
                             <Route path="*" element={<NotFound />} />

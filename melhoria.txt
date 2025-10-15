@@ -2,12 +2,22 @@ Login
 gabrielmatteelias@gmail.com
 validador1@
 
+Email
+contatovalidawhats@gmail.com
+@validaPoa25#
+
 Swagger
 superUsuario
 FuZCs4ArFT5YapOkpCi73RMFl2NTSS54Levk3Y2ZOin2yogteo
 
 ## 🔐 Login
 - [] Esqueceu sua senha
+
+## 🔑 Alterar senha
+- [x] Senha igual a confirmar senha
+- [x] Validação de caracteres nova senha
+- [x] Integrar backend
+
 
 ## 📊 Relatórios
 - [x] Botão para disparar fila
