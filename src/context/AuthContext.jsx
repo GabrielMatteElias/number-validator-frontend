@@ -8,7 +8,7 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
 
     const login = async (email, password) => {
         setLoading(true);
-        setError(null)
+        setError('')
 
         try {
             const response = await loginService(email, password);

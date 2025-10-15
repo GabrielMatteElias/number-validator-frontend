@@ -14,6 +14,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showSuccess, setShowSuccess] = useState(false);
+    const [err, setErr] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -43,9 +44,10 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+            setErr('');
 
         if (!email || !password) {
-            setErro('Preencha todos os campos.');
+            setErr('Preencha todos os campos.');
             return;
         }
 
@@ -92,6 +94,12 @@ const Login = () => {
                         {error && (
                             <Alert severity="error">
                                 {error}
+                            </Alert>
+                        )}
+
+                        {err && (
+                            <Alert severity="error">
+                                {err}
                             </Alert>
                         )}
 
