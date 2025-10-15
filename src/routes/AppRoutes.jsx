@@ -16,7 +16,7 @@ import MainLayout from '../layouts/MainLayout';
 import ProtectedRoute from './PrivateRoutes';
 import Loading from '../components/Loading.jsx';
 import ErrorBoundary from '../components/ErrorBoundary.jsx';
-import AlterarSenha from '../pages/alterarSenha/alterarSenha.jsx';
+import AlterarSenha from '../pages/alterarSenha/AlterarSenha.jsx';
 
 const AppRoutes = () => {
     return (
