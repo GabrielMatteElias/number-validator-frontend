@@ -49,7 +49,7 @@
     margin-bottom: 12px;
 }
 
-.subtitle{
+.subtitle {
     font-size: 1.2rem;
 }
 
@@ -71,33 +71,4 @@
     height: 8px;
     border-radius: 4px;
     margin-top: 8px;
-}
-
-.pacotesContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.statusPlano {
-    display: flex;
-}
-
-.pacoteCard {
-    padding: 1rem;
-    position: relative;
-    transition: transform 0.3s;
-}
-
-.recomendado {
-    border: 2px solid #1976D2;
-    animation: pulse 2s infinite;
-}
-
-.recomendadoBadge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-weight: bold;
-    font-size: 1.1rem;
 }

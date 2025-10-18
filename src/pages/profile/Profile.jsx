@@ -10,8 +10,9 @@ import styles from './Profile.module.css';
 import SEO from '../../components/SEO';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react'; // Adicionei useMemo
 import { useApi } from '../../services/useApi';
+import ValidationPackage from '../../components/ValidationPackage';
 
 const Profile = () => {
     const [userProfile, setUserProfile] = useState({})
@@ -40,15 +41,11 @@ const Profile = () => {
         }
     }, [user]);
 
-    const pacotes = [
-        { id: 1, quantidade: 1000, preco: 30 },
-        { id: 2, quantidade: 2500, preco: 50, recomendado: true },
-        { id: 3, quantidade: 5000, preco: 90 },
-        { id: 4, quantidade: 10000, preco: 150 },
-    ];
-
     const progresso = () => {
-        return userProfile?.total_usado_validacao / userProfile?.total_validacao * 100;
+        if (userProfile?.total_validacao > 0) {
+            return userProfile.total_usado_validacao / userProfile.total_validacao * 100;
+        }
+        return 0;
     }
 
     if (!user) return null;
@@ -77,10 +74,10 @@ const Profile = () => {
                         <Box className={styles.numbersContainer}>
                             <Box>
                                 <Typography variant="h5" className={styles.numbersAvailable}>
-                                    {userProfile.total_usado_validacao || 0}
+                                    {userProfile.total_usado_validacao?.toLocaleString() || 0}
                                 </Typography>
                                 <Typography variant="body1" className={styles.numbersTotal}>
-                                    de {userProfile.total_validacao}
+                                    de {userProfile.total_validacao?.toLocaleString()}
                                 </Typography>
                             </Box>
                             <Chip
@@ -93,7 +90,6 @@ const Profile = () => {
 
                         <LinearProgress
                             variant="determinate"
-                            // value={progresso(userProfile.total_validacao, userProfile.total_usado_validacao)}
                             value={progresso()}
                             className={styles.progressBar}
                             color={progresso() > 80 ? 'warning' : 'primary'}
@@ -101,35 +97,9 @@ const Profile = () => {
                     </CardContent>
                 </Card>
 
-                {/* Pacotes Disponíveis */}
-                <Box className={styles.pacotesContainer}>
-                    {pacotes.map(pacote => (
-                        <Card
-                            key={pacote.id}
-                            className={`${styles.pacoteCard} ${pacote.recomendado ? styles.recomendado : ''}`}
-                        >
-                            <CardContent sx={{ textAlign: 'center' }}>
-                                {pacote.recomendado && (
-                                    <Typography variant="caption" color="primary" className={styles.recomendadoBadge}>
-                                        RECOMENDADO
-                                    </Typography>
-                                )}
-                                <Typography variant="h6">
-                                    {pacote.quantidade.toLocaleString()} números
-                                </Typography>
-                                <Typography variant="body1" mb={2}>
-                                    R${pacote.preco}
-                                </Typography>
-                                <Button variant="contained" size="small" fullWidth>
-                                    Comprar
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </Box>
+                <ValidationPackage />                
             </Box>
         </>
-
     );
 };
 

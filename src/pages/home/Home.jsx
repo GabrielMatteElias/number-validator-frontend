@@ -2,6 +2,7 @@ import { Box, Button, Container, Grid, Card, CardActions, CardContent, CardMedia
 import styles from './Home.module.css';
 import { Link } from "react-router-dom";
 import { useAuth } from '../../context/AuthContext';
+import ValidationPackage from "../../components/ValidationPackage";
 
 const Home = () => {
 
@@ -208,43 +209,7 @@ const Home = () => {
                     <Typography variant="h6" component="p" align="center" gutterBottom className={styles.sectionSubtitle}>
                         Escolha o plano ideal para suas necessidades e comece a validar seus contatos hoje mesmo.
                     </Typography>
-                    <Grid container spacing={4} sx={{ mt: 4 }} justifyContent="center" alignItems="stretch">
-                        {packages.map((pkg, index) => (
-                            <Grid key={index} className={styles.packageGridItem}>
-                                <Card className={`${styles.packageCard} ${pkg.popular ? styles.popularPackage : ''}`}>
-                                    {pkg.popular && (
-                                        <Box className={styles.popularBadge}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
-                                            Popular
-                                        </Box>
-                                    )}
-                                    <CardContent className={styles.packageCardContent}>
-                                        <Typography variant="h4" component="h3" gutterBottom className={styles.packageTitle}>
-                                            {pkg.title}
-                                        </Typography>
-                                        <Typography variant="h3" component="p" className={styles.packagePrice} sx={{ color: pkg.title === 'Personalizado' ? '#5e35b1' : '#1976d2' }}>
-                                            {pkg.price}
-                                        </Typography>
-                                        <Typography variant="subtitle1" component="p" gutterBottom className={styles.packageValidations}>
-                                            {pkg.validations}
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions className={styles.packageCardActions}>
-                                        <Button
-                                            startIcon={pkg.title === 'Personalizado' ? <WhatsAppIcon /> : ''}
-                                            variant={pkg.buttonVariant}
-                                            sx={{ backgroundColor: pkg.title === 'Personalizado' ? '#673ab7  ' : 'primary', '&:hover': { backgroundColor: pkg.title === 'Personalizado' ? '#5e35b1' : 'primary' } }}
-                                            fullWidth
-                                            className={styles.packageButton}
-                                            target={pkg.whatsappLink ? "_blank" : ''}
-                                            href={pkg.whatsappLink || "#cadastro"}>
-                                            {pkg.buttonText}
-                                        </Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
-                        ))}
-                    </Grid>
+                    <ValidationPackage />
                 </Container>
             </Box>
             <Divider />
